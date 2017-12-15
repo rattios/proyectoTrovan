@@ -8,6 +8,11 @@ import { LoginComponent } from './login/login.component';
 export const PagesRoutes: Routes = [
 
     {
+      path: '',
+      redirectTo: 'login',
+      pathMatch: 'full',
+    },
+    {
         path: '',
         children: [ {
             path: 'login',

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { HttpClient, HttpParams } from '@angular/common/http';
+import {Router} from '@angular/router';
+import 'rxjs/add/operator/toPromise';
+
 declare var $:any;
 
 @Component({
@@ -10,6 +14,13 @@ declare var $:any;
 
 export class LoginComponent implements OnInit{
     test : Date = new Date();
+
+    user= ''
+    password='';
+    private data:any;
+    public loading = false;
+
+    constructor(private http: HttpClient,private router: Router) { }
 
     checkFullPageBackgroundImage(){
         var $page = $('.full-page');
@@ -27,5 +38,44 @@ export class LoginComponent implements OnInit{
             // after 1000 ms we add the class animated to the login/register card
             $('.card').removeClass('card-hidden');
         }, 700)
+    }
+
+    Ingresar(){
+        this.router.navigate(['home']);
+
+        this.loading = true;
+   
+        var datos= {
+            user: this.user,
+            password: this.password
+        }
+
+        console.log('Esperando...');
+
+        
+      /*this.http.post('http://localhost/gitHub/proyectoTrovan/trovanAPI/public/login/web', datos)
+      //this.http.post(this.rutaService.getRutaApi()+'constructoraKienAPI/public/login/web', datos)
+        .toPromise()
+        .then(
+          data => { // Success
+            console.log(data);
+            this.data=data;
+            localStorage.setItem('trovan_token', this.data.token);
+            localStorage.setItem('trovan_user_id', this.data.user.id);
+            //localStorage.setItem('trovan_user_nombre', this.data.user.nombre);
+            localStorage.setItem('trovan_user_tipo', this.data.user.tipo_usuario);
+            
+            this.router.navigate(['home']);
+            this.loading = false;
+
+         },
+          msg => { // Error
+
+            console.log(msg)
+              //console.log(msg.error.error);
+              alert('Error: '+msg.error.error);
+              this.loading = false;
+          }
+        );*/
     }
 }

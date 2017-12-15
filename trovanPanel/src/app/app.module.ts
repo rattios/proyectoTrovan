@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { HttpModule } from '@angular/http';
+//import { HttpModule } from '@angular/http';
 import { APP_BASE_HREF } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -13,12 +13,17 @@ import { NavbarModule} from './shared/navbar/navbar.module';
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { AppRoutes } from './app.routing';
+
+//Mis imports
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
     imports:      [
+        HttpClientModule,
         BrowserModule,
         FormsModule,
         RouterModule.forRoot(AppRoutes),
-        HttpModule,
+        /*HttpModule,*/
         SidebarModule,
         NavbarModule,
         FooterModule

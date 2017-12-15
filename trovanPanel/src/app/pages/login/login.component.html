@@ -8,9 +8,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/#/dashboard">MD Pro Angular</a>
+                <div class="navbar-brand">
+                    <div>
+                        <img src="/assets/img/trovan.png" height="auto" width="220px"/>
+                    </div>
+                </div>
             </div>
-            <div class="collapse navbar-collapse" id="menu-example">
+            <!-- <div class="collapse navbar-collapse" id="menu-example">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="/dashboard">
@@ -33,10 +37,10 @@
                         </a>
                     </li>
                 </ul>
-            </div>
+            </div> -->
         </div>
     </nav>
-    <div class="full-page login-page" filter-color="black" data-image="../../../assets/img/login.jpeg">
+    <div class="full-page login-page" filter-color="black" data-image="../../../assets/img/imagenPlat2.jpeg">
         <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
         <div class="content">
             <div class="container">
@@ -44,9 +48,9 @@
                     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
                         <form method="#" action="#">
                             <div class="card card-login card-hidden">
-                                <div class="card-header text-center" data-background-color="rose">
+                                <div class="card-header text-center" data-background-color="green">
                                     <h4 class="card-title">Login</h4>
-                                    <div class="social-line">
+                                    <!-- <div class="social-line">
                                         <a href="#btn" class="btn btn-just-icon btn-simple">
                                             <i class="fa fa-facebook-square"></i>
                                         </a>
@@ -56,10 +60,10 @@
                                         <a href="#eugen" class="btn btn-just-icon btn-simple">
                                             <i class="fa fa-google-plus"></i>
                                         </a>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <p class="category text-center">
-                                    Or Be Classical
+                                    Ingresa tus credenciales
                                 </p>
                                 <div class="card-content">
                                     <div class="input-group">
@@ -67,11 +71,11 @@
                                             <i class="material-icons">face</i>
                                         </span>
                                         <div class="form-group label-floating">
-                                            <label class="control-label">First Name</label>
-                                            <input type="text" class="form-control">
+                                            <label class="control-label">User</label>
+                                            <input type="text" class="form-control" [(ngModel)]="user" name="user">
                                         </div>
                                     </div>
-                                    <div class="input-group">
+                                    <!-- <div class="input-group">
                                         <span class="input-group-addon">
                                             <i class="material-icons">email</i>
                                         </span>
@@ -79,19 +83,19 @@
                                             <label class="control-label">Email address</label>
                                             <input type="email" class="form-control">
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="input-group">
                                         <span class="input-group-addon">
                                             <i class="material-icons">lock_outline</i>
                                         </span>
                                         <div class="form-group label-floating">
                                             <label class="control-label">Password</label>
-                                            <input type="password" class="form-control">
+                                            <input type="password" class="form-control" [(ngModel)]="password" name="password">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="footer text-center">
-                                    <button type="submit" class="btn btn-rose btn-simple btn-wd btn-lg">Let's go</button>
+                                    <button type="submit" class="btn btn-success btn-simple btn-wd btn-lg" (click)="Ingresar()">Ingresar</button>
                                 </div>
                             </div>
                         </form>
@@ -101,7 +105,7 @@
         </div>
         <footer class="footer">
             <div class="container">
-                <nav class="pull-left">
+                <!-- <nav class="pull-left">
                     <ul>
                         <li>
                             <a href="#">
@@ -124,11 +128,11 @@
                             </a>
                         </li>
                     </ul>
-                </nav>
+                </nav> -->
                 <p class="copyright pull-right">
                     &copy;
                     {{test | date: 'yyyy'}}
-                    <a href="https://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                    Trovan Unique
                 </p>
             </div>
         </footer>

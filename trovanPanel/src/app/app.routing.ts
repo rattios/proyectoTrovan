@@ -6,17 +6,32 @@ import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 export const AppRoutes: Routes = [
     {
       path: '',
-      redirectTo: 'dashboard',
+      redirectTo: 'pages',
       pathMatch: 'full',
     },
     {
       path: '',
       component: AdminLayoutComponent,
       children: [
-          {
+          /*{
         path: '',
         loadChildren: './dashboard/dashboard.module#DashboardModule'
-    },{
+    },*/
+
+          {
+        path: '',
+        loadChildren: './home/home.module#HomeModule'
+    },
+    {
+        path: 'chip',
+        loadChildren: './chip/chip.module#ChipModule'
+    },
+    {
+        path: 'agregarPaciente',
+        loadChildren: './agregarPaciente/agregarPaciente.module#AgregarPacienteModule'
+    },
+
+    {
         path: 'components',
         loadChildren: './components/components.module#ComponentsModule'
     },{

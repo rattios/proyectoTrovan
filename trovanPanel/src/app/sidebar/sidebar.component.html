@@ -2,20 +2,20 @@
 
         <div class="logo">
             <div class="logo-normal">
-                <a href="https://www.creative-tim.com" class="simple-text">
-                    Creative Tim
+                <a class="simple-text">
+                    Trovan Unique
                 </a>
             </div>
 
             <div class="logo-img">
-                <img src="/assets/img/angular2-logo-white.png"/>
+                <img src="/assets/img/trovan.png"/>
             </div>
         </div>
 
 
         <div class="sidebar-wrapper">
 
-            <div class="user">
+            <!-- <div class="user">
                 <div class="photo">
                     <img src="../assets/img/faces/avatar.jpg" />
                 </div>
@@ -49,9 +49,9 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div *ngIf="isNotMobileMenu()">
-                <form class="navbar-form navbar-right" role="search">
+                <!-- <form class="navbar-form navbar-right" role="search">
                     <div class="form-group form-search is-empty">
                         <input class="form-control" placeholder="Search" type="text">
                         <span class="material-input"></span>
@@ -61,9 +61,9 @@
                         <i class="material-icons">search</i>
                         <div class="ripple-container"></div>
                     </button>
-                </form>
+                </form> -->
                 <ul class="nav nav-mobile-menu">
-                    <li class="">
+                    <!-- <li class="">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#pablo" aria-expanded="false">
                             <i class="material-icons">dashboard</i>
                             <p class="hidden-lg hidden-md">Dashboard</p>
@@ -101,18 +101,53 @@
                             <i class="material-icons">person</i>
                             <p class="hidden-lg hidden-md">Profile</p>
                         <div class="ripple-container"></div></a>
+                    </li> -->
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                            <i class="material-icons">person</i>
+                            <p class="hidden-lg hidden-md">Profile</p>
+                        <div class="ripple-container"></div></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">Salir</a>
+                            </li>
+                            
+                        </ul>
                     </li>
+
                     <li class="separator hidden-lg hidden-md"></li>
                 </ul>
             </div>
             <div class="nav-container">
                 <ul class="nav">
+
                     <li routerLinkActive="active">
+                        <a  [routerLink]="[menuItems[27].path]">
+                            <i class="{{menuItems[27].icon}}">home</i>
+                            <p>{{menuItems[27].title}}</p>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a  [routerLink]="[menuItems[28].path]">
+                            <i class="{{menuItems[28].icon}}">memory</i>
+                            <p>{{menuItems[28].title}}</p>
+                        </a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a  [routerLink]="[menuItems[29].path]">
+                            <i class="{{menuItems[29].icon}}">note_add</i>
+                            <p>{{menuItems[29].title}}</p>
+                        </a>
+                    </li>
+
+
+                    <!-- <li routerLinkActive="active">
                         <a  [routerLink]="[menuItems[0].path]">
                             <i class="{{menuItems[0].icon}}">dashboard</i>
                             <p>{{menuItems[0].title}}</p>
                         </a>
-                    </li>
+                    </li> -->
                     <li routerLinkActive="active">
                         <a data-toggle="collapse" href="#componentsExamples">
                             <i class="material-icons">apps</i>
@@ -338,7 +373,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> 
 
                 </ul>
             </div>
