@@ -29,8 +29,8 @@ class Animal extends Model
 		'especie_id', 'genero', 'raza_id',
 		'peso', 'altura', 'pelaje',
 		'color_ojos', 'temperamento', 'tatuaje',
-		'pediegree', 'esterilizado', 'ultima_vacuna_id',
-		'microchip', 'posicion_implante', 'otros_rasgos',
+		'pediegree', 'esterilizado', 'f_ult_vacuna', 'cod_ult_vacuna',
+		'microchip', 'posicion_implante_id', 'otros_rasgos',
 		'madre_id', 'padre_id'];
 
     /**
@@ -68,11 +68,18 @@ class Animal extends Model
 		return $this->belongsTo('App\Raza', 'raza_id');
 	}
 
-	// Relación de animal con tipo_vacuna:
+	/*// Relación de animal con tipo_vacuna:
 	public function ultima_vacuna()
 	{
 		// 1 animal tiene una ultima vacuna
 		return $this->belongsTo('App\TipoVacuna', 'ultima_vacuna_id');
+	}*/
+
+	// Relación de animal con posicion_implante:
+	public function posicion_implante()
+	{
+		// 1 animal tiene una posicion de implante
+		return $this->belongsTo('App\PosicionImplante', 'posicion_implante_id');
 	}
 
 	// Relación de animal con animal:

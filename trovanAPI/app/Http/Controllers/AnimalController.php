@@ -18,7 +18,7 @@ class AnimalController extends Controller
     {
         //cargar todos los animales
         $animales = \App\Animal::with('propietario')->with('veterinario')
-            ->with('especie')->with('raza')->with('ultima_vacuna')
+            ->with('especie')->with('raza')->with('posicion_implante')
             ->with('madre')->with('padre')->get();
 
         if(count($animales) == 0){
@@ -55,8 +55,8 @@ class AnimalController extends Controller
              !$request->input('pelaje') || !$request->input('color_ojos') ||
              !$request->input('temperamento') || !$request->input('tatuaje') ||
              !$request->input('pediegree') || !$request->input('esterilizado') ||
-             !$request->input('ultima_vacuna_id') || !$request->input('microchip') ||
-             !$request->input('posicion_implante')
+             !$request->input('f_ult_vacuna')  || !$request->input('cod_ult_vacuna')||
+             !$request->input('microchip') || !$request->input('posicion_implante_id')
         )
         {
             // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.
@@ -90,11 +90,11 @@ class AnimalController extends Controller
             return response()->json(['error'=>'No existe la raza que se quiere asociar al animal.'], 409);
         }
 
-        $aux5 = \App\TipoVacuna::where('id', $request->input('ultima_vacuna_id'))->get();
+        /*$aux5 = \App\TipoVacuna::where('id', $request->input('ultima_vacuna_id'))->get();
         if(count($aux5)==0){
            // Devolvemos un código 409 Conflict. 
             return response()->json(['error'=>'No existe el tipo de ultima vacuna que se quiere asociar al animal.'], 409);
-        }
+        }*/
 
         $aux6 = \App\Animal::where('microchip', $request->input('microchip'))->get();
         if(count($aux6)!=0){
@@ -120,6 +120,14 @@ class AnimalController extends Controller
             }
         }
 
+        $aux9 = \App\PosicionImplante::where('id', $request->input('posicion_implante_id'))
+            ->get();
+        if(count($aux9)==0){
+           // Devolvemos un código 409 Conflict. 
+            return response()->json(['error'=>'No existe la posicion del implante que se quiere asociar al animal.'], 409);
+        }
+
+
         //Creamos el nuevo animal
         if($nuevoAnimal=\App\Animal::create($request->all())){
            return response()->json(['status'=>'ok', 'animal'=>$nuevoAnimal], 200);
@@ -138,7 +146,7 @@ class AnimalController extends Controller
     {
         //cargar un animal
         $animal = \App\Animal::with('propietario')->with('veterinario')
-            ->with('especie')->with('raza')->with('ultima_vacuna')
+            ->with('especie')->with('raza')->with('posicion_implante')
             ->with('madre')->with('padre')->find($id);
 
         if(count($animal)==0){
@@ -195,9 +203,12 @@ class AnimalController extends Controller
         $tatuaje=$request->input('tatuaje');
         $pediegree=$request->input('pediegree');
         $esterilizado=$request->input('esterilizado'); 
-        $ultima_vacuna_id=$request->input('ultima_vacuna_id'); 
+        //$ultima_vacuna_id=$request->input('ultima_vacuna_id'); 
+        $f_ult_vacuna=$request->input('f_ult_vacuna');
+        $cod_ult_vacuna=$request->input('cod_ult_vacuna');
         $microchip=$request->input('microchip'); 
-        $posicion_implante=$request->input('posicion_implante');
+        //$posicion_implante=$request->input('posicion_implante');
+        $posicion_implante_id=$request->input('posicion_implante_id');
         $otros_rasgos=$request->input('otros_rasgos'); 
         $madre_id=$request->input('madre_id'); 
         $padre_id=$request->input('padre_id'); 
@@ -336,7 +347,7 @@ class AnimalController extends Controller
             $bandera=true;
         }
 
-        if ($ultima_vacuna_id != null && $ultima_vacuna_id!='')
+        /*if ($ultima_vacuna_id != null && $ultima_vacuna_id!='')
         {
             $aux = \App\TipoVacuna::where('ultima_vacuna_id', $request->input('ultima_vacuna_id'))->get();
 
@@ -347,6 +358,18 @@ class AnimalController extends Controller
 
             $animal->ultima_vacuna_id = $ultima_vacuna_id;
             $bandera=true;
+        }*/
+
+        if ($f_ult_vacuna != null && $f_ult_vacuna!='')
+        {
+            $animal->f_ult_vacuna = $f_ult_vacuna;
+            $bandera=true;
+        }
+
+        if ($cod_ult_vacuna != null && $cod_ult_vacuna!='')
+        {
+            $animal->cod_ult_vacuna = $cod_ult_vacuna;
+            $bandera=true;
         }
 
         if ($microchip != null && $microchip!='')
@@ -354,7 +377,7 @@ class AnimalController extends Controller
             $aux = \App\Animal::where('microchip', $request->input('microchip'))
                 ->where('id', '<>', $animal->id)->get();
 
-            if(count($aux)==0){
+            if(count($aux)!=0){
                // Devolvemos un código 409 Conflict. 
                 return response()->json(['error'=>'Ya esxite otro animal con el microchip '.$request->input('microchip').'.'], 409);
             }
@@ -363,9 +386,23 @@ class AnimalController extends Controller
             $bandera=true;
         }
 
-        if ($posicion_implante != null && $posicion_implante!='')
+        /*if ($posicion_implante != null && $posicion_implante!='')
         {
             $animal->posicion_implante = $posicion_implante;
+            $bandera=true;
+        }*/
+
+        if ($posicion_implante_id != null && $posicion_implante_id!='')
+        {
+            $aux = \App\PosicionImplante::where('id', $request->input('posicion_implante_id'))
+                ->get();
+
+            if(count($aux)==0){
+               // Devolvemos un código 409 Conflict. 
+                return response()->json(['error'=>'No existe la posicion del implante que se quiere asociar al animal.'], 409);
+            }
+
+            $animal->posicion_implante_id = $posicion_implante_id;
             $bandera=true;
         }
 
@@ -457,7 +494,7 @@ class AnimalController extends Controller
     }
 
     //Llenado de los selectores para la creacion de animales
-    public function especiesRazasVacunas()
+    public function especiesRazasPosImplantes()
     {
         //cargar todas las especies
         $especies = \App\Especie::all();
@@ -466,10 +503,13 @@ class AnimalController extends Controller
         $razas = \App\Raza::all();
 
         //cargar todas las vacunas
-        $vacunas = \App\TipoVacuna::all();
+        //$vacunas = \App\TipoVacuna::all();
+
+        //cargar todas las posiciones de los implantes
+        $posImplantes = \App\PosicionImplante::all();
 
         return response()->json(['status'=>'ok',
-             'especies'=>$especies, 'razas'=>$razas, 'vacunas'=>$vacunas], 200);
+             'especies'=>$especies, 'razas'=>$razas, 'posImplantes'=>$posImplantes], 200);
         
     }
 }

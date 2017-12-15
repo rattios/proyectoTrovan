@@ -43,11 +43,17 @@ class AnimalesMigration extends Migration
             $table->string('pediegree');
             $table->string('esterilizado'); //SI-NO
 
-            $table->integer('ultima_vacuna_id')->unsigned()->nullable();
-            $table->foreign('ultima_vacuna_id')->references('id')->on('tipos_vacunas');
+            /*$table->integer('ultima_vacuna_id')->unsigned()->nullable();
+            $table->foreign('ultima_vacuna_id')->references('id')->on('tipos_vacunas');*/
+            $table->date('f_ult_vacuna')->nullable();
+            $table->string('cod_ult_vacuna')->nullable();
 
             $table->string('microchip')->unique();
-            $table->text('posicion_implante');
+
+            //$table->text('posicion_implante');
+            $table->integer('posicion_implante_id')->unsigned();
+            $table->foreign('posicion_implante_id')->references('id')->on('posiciones_implantes');
+
             $table->text('otros_rasgos')->nullable();
 
             $table->integer('madre_id')->unsigned()->nullable();

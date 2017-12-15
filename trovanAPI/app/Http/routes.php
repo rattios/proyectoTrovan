@@ -52,7 +52,7 @@ Route::group(  ['middleware' =>'cors'], function(){
         //----Pruebas AnimalController
         Route::get('animales','AnimalController@index');
         //Route::get('/animales/pedidos','AnimalController@usuariosClientesPedidos');
-        Route::get('/animales/especies/razas/vacunas','AnimalController@especiesRazasVacunas');
+        Route::get('/animales/especies/razas/posImplantes','AnimalController@especiesRazasPosImplantes');
         Route::post('/animales','AnimalController@store');
         Route::put('/animales/{id}','AnimalController@update');
         Route::delete('/animales/{id}','AnimalController@destroy');
