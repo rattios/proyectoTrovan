@@ -77,14 +77,23 @@ Route::group(  ['middleware' =>'cors'], function(){
         Route::get('/razas/{id}','RazaController@show');
         //Route::get('/razas/{id}/pedidos','RazaController@usuarioPedidos');
 
-        //----Pruebas TipoVacunaController
+        /*//----Pruebas TipoVacunaController
         Route::get('vacunas','TipoVacunaController@index');
         //Route::get('/vacunas/pedidos','TipoVacunaController@usuariosClientesPedidos');
         Route::post('/vacunas','TipoVacunaController@store');
         Route::put('/vacunas/{id}','TipoVacunaController@update');
         Route::delete('/vacunas/{id}','TipoVacunaController@destroy');
         Route::get('/vacunas/{id}', 'TipoVacunaController@show');
-        //Route::get('/vacunas/{id}/pedidos','TipoVacunaController@usuarioPedidos');
+        //Route::get('/vacunas/{id}/pedidos','TipoVacunaController@usuarioPedidos');*/
+
+        //----Pruebas PosicionImplanteController
+        Route::get('posImplantes','PosicionImplanteController@index');
+        //Route::get('/posImplantes/pedidos','PosicionImplanteController@usuariosClientesPedidos');
+        Route::post('/posImplantes','PosicionImplanteController@store');
+        Route::put('/posImplantes/{id}','PosicionImplanteController@update');
+        Route::delete('/posImplantes/{id}','PosicionImplanteController@destroy');
+        Route::get('/posImplantes/{id}', 'PosicionImplanteController@show');
+        //Route::get('/posImplantes/{id}/pedidos','PosicionImplanteController@usuarioPedidos');
 
 
 
