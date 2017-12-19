@@ -16,9 +16,15 @@ import { AppRoutes } from './app.routing';
 
 //Mis imports
 import { HttpClientModule } from '@angular/common/http';
+//import { LoadingModule } from 'ngx-loading';
+import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
+import { RutaBaseService } from './services/ruta-base/ruta-base.service';
+import { AlertaService } from './services/alerta/alerta.service';
+
 
 @NgModule({
     imports:      [
+        LoadingModule,
         HttpClientModule,
         BrowserModule,
         FormsModule,
@@ -32,6 +38,10 @@ import { HttpClientModule } from '@angular/common/http';
         AppComponent,
         AdminLayoutComponent,
         AuthLayoutComponent
+    ],
+    providers: [
+        RutaBaseService,
+        AlertaService
     ],
     bootstrap:    [ AppComponent ]
 })

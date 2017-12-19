@@ -1,3 +1,7 @@
+<div class="my-container">
+    <ngx-loading [show]="loading"></ngx-loading>
+</div>
+
 <div class="wrapper wrapper-full-page">
     <nav class="navbar navbar-primary navbar-transparent navbar-fixed-top">
         <div class="container">
@@ -14,16 +18,16 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="collapse navbar-collapse" id="menu-example">
+            <div class="collapse navbar-collapse" id="menu-example">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
+                    <!-- <li>
                         <a href="/dashboard">
                             <i class="material-icons">dashboard</i> Dashboard
                         </a>
-                    </li>
+                    </li> -->
                     <li class="">
                         <a href="/pages/register">
-                            <i class="material-icons">person_add</i> Register
+                            <i class="material-icons">person_add</i> Registrate
                         </a>
                     </li>
                     <li class=" active ">
@@ -31,13 +35,13 @@
                             <i class="material-icons">fingerprint</i> Login
                         </a>
                     </li>
-                    <li class="">
+                    <!-- <li class="">
                         <a href="/pages/lock">
                             <i class="material-icons">lock_open</i> Lock
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
-            </div> -->
+            </div>
         </div>
     </nav>
     <div class="full-page login-page" filter-color="black" data-image="../../../assets/img/imagenPlat2.jpeg">
@@ -95,7 +99,7 @@
                                     </div>
                                 </div>
                                 <div class="footer text-center">
-                                    <button type="submit" class="btn btn-success btn-simple btn-wd btn-lg" (click)="Ingresar()">Ingresar</button>
+                                    <button type="submit" class="btn btn-success btn-simple btn-wd btn-lg" (click)="Ingresar()" [disabled]="user==='' || password===''">Ingresar</button>
                                 </div>
                             </div>
                         </form>

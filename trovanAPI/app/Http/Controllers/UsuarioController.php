@@ -146,14 +146,41 @@ class UsuarioController extends Controller
         if ($request->input('exp')) {
             $usuario->exp = $request->input('exp');
         }
-        if ($request->input('direccion')) {
-            $usuario->direccion = $request->input('direccion');
-        }
         if ($request->input('ciudad')) {
             $usuario->ciudad = $request->input('ciudad');
         }
         if ($request->input('provincia')) {
             $usuario->provincia = $request->input('provincia');
+        }
+        if ($request->input('direccion_tipo')) {
+            $usuario->direccion_tipo = $request->input('direccion_tipo');
+        }
+        if ($request->input('municipio')) {
+            $usuario->municipio = $request->input('municipio');
+        }
+        if ($request->input('zona')) {
+            $usuario->zona = $request->input('zona');
+        }
+        if ($request->input('av')) {
+            $usuario->av = $request->input('av');
+        }
+        if ($request->input('calle')) {
+            $usuario->calle = $request->input('calle');
+        }
+        if ($request->input('nro')) {
+            $usuario->nro = $request->input('nro');
+        }
+        if ($request->input('barrio')) {
+            $usuario->barrio = $request->input('barrio');
+        }
+        if ($request->input('mz')) {
+            $usuario->mz = $request->input('mz');
+        }
+        if ($request->input('uv')) {
+            $usuario->uv = $request->input('uv');
+        }
+        if ($request->input('cargo')) {
+            $usuario->cargo = $request->input('cargo');
         }
         if ($request->input('nombre')) {
             $usuario->nombre = $request->input('nombre');
@@ -182,7 +209,7 @@ class UsuarioController extends Controller
         $usuario->tipo_usuario = $request->input('tipo_usuario');
 
         if($usuario->save()){
-           return response()->json(['status'=>'ok', 'usuario'=>$usuario], 200);
+           return response()->json(['status'=>'ok', 'message'=>'Usuario creado con éxito.', 'usuario'=>$usuario], 200);
         }else{
             return response()->json(['error'=>'Error al crear el usuario.'], 500);
         }
@@ -250,10 +277,19 @@ class UsuarioController extends Controller
         $matricula=$request->input('matricula'); 
         $matricula_rema=$request->input('matricula_rema');
         $ci=$request->input('ci');
-        $exp=$request->input('exp');
-        $direccion=$request->input('direccion'); 
+        $exp=$request->input('exp'); 
         $ciudad=$request->input('ciudad'); 
-        $provincia=$request->input('provincia'); 
+        $provincia=$request->input('provincia');
+        $direccion_tipo=$request->input('direccion_tipo');
+        $municipio=$request->input('municipio');
+        $zona=$request->input('zona');
+        $av=$request->input('av');
+        $calle=$request->input('calle');
+        $nro=$request->input('nro');
+        $barrio=$request->input('barrio');
+        $mz=$request->input('mz');
+        $uv=$request->input('uv');
+        $cargo=$request->input('cargo'); 
         $nombre=$request->input('nombre');
         $apellido_paterno=$request->input('apellido_paterno'); 
         $apellido_materno=$request->input('apellido_materno'); 
@@ -337,12 +373,6 @@ class UsuarioController extends Controller
             $bandera=true;
         }
 
-        if ($direccion != null && $direccion!='')
-        {
-            $usuario->direccion = $direccion;
-            $bandera=true;
-        }
-
         if ($ciudad != null && $ciudad!='')
         {
             $usuario->ciudad = $ciudad;
@@ -352,6 +382,66 @@ class UsuarioController extends Controller
         if ($provincia != null && $provincia!='')
         {
             $usuario->provincia = $provincia;
+            $bandera=true;
+        }
+
+        if ($direccion_tipo != null && $direccion_tipo!='')
+        {
+            $usuario->direccion_tipo = $direccion_tipo;
+            $bandera=true;
+        }
+
+        if ($municipio != null && $municipio!='')
+        {
+            $usuario->municipio = $municipio;
+            $bandera=true;
+        }
+
+        if ($zona != null && $zona!='')
+        {
+            $usuario->zona = $zona;
+            $bandera=true;
+        }
+
+        if ($av != null && $av!='')
+        {
+            $usuario->av = $av;
+            $bandera=true;
+        }
+
+        if ($calle != null && $calle!='')
+        {
+            $usuario->calle = $calle;
+            $bandera=true;
+        }
+
+        if ($nro != null && $nro!='')
+        {
+            $usuario->nro = $nro;
+            $bandera=true;
+        }
+
+        if ($barrio != null && $barrio!='')
+        {
+            $usuario->barrio = $barrio;
+            $bandera=true;
+        }
+
+        if ($mz != null && $mz!='')
+        {
+            $usuario->mz = $mz;
+            $bandera=true;
+        }
+
+        if ($uv != null && $uv!='')
+        {
+            $usuario->uv = $uv;
+            $bandera=true;
+        }
+
+        if ($cargo != null && $cargo!='')
+        {
+            $usuario->cargo = $cargo;
             $bandera=true;
         }
 

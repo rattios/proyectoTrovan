@@ -1,0 +1,61 @@
+/*Loading*/
+.backdrop[_ngcontent-c1]{
+	position: fixed !important;
+}
+
+.button-vete, .button-asc{
+	    height: 60px;
+	    width: 49%;
+	    display: inline-block;
+	    white-space: pre-wrap;
+	    color: #000;
+	    font-weight: bold;
+	    font-size: 12px;
+	    padding: 0px 5px;
+	    margin: 0px 0px 20px 0px;
+	}
+	.button-vete, .button-asc {
+	    position: relative;
+	    background: #000;
+	    overflow: hidden;
+	    color: #fff;
+	}
+	.button-vete:before {
+	    content: ' ';
+	    display: block;
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    width: 100%;
+	    height: 100%;
+	    z-index: -1;
+	    opacity: 0.4;
+	    background-image: url('https://cdn.urgente24.com/sites/default/files/notas/2017/08/22/chip.jpg');
+	    background-repeat: no-repeat;
+	    -ms-background-size: cover;
+	    -o-background-size: cover;
+	    -moz-background-size: cover;
+	    -webkit-background-size: cover;
+	    background-size: cover;
+	}
+	.button-asc:before {
+	    content: ' ';
+	    display: block;
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    width: 100%;
+	    height: 100%;
+	    z-index: -1;
+	    opacity: 0.4;
+	    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0bkFzPlqJNn3CtVjhQ_IBKq2BFOXKJhYjsuf68qtHMyp4KUds');
+	    background-repeat: no-repeat;
+	    -ms-background-size: cover;
+	    -o-background-size: cover;
+	    -moz-background-size: cover;
+	    -webkit-background-size: cover;
+	    background-size: cover;
+	}
+	.active2{
+		border-bottom: 5px solid #6bbd6e;
+	}

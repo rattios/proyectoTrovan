@@ -4,6 +4,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import {Router} from '@angular/router';
 import 'rxjs/add/operator/toPromise';
 
+import { RutaBaseService } from '../../services/ruta-base/ruta-base.service';
+import { AlertaService } from '../../services/alerta/alerta.service';
+
 declare var $:any;
 
 @Component({
@@ -20,7 +23,7 @@ export class LoginComponent implements OnInit{
     private data:any;
     public loading = false;
 
-    constructor(private http: HttpClient,private router: Router) { }
+    constructor(private http: HttpClient,private router: Router, private rutaService: RutaBaseService, private alertaService: AlertaService) { }
 
     checkFullPageBackgroundImage(){
         var $page = $('.full-page');
@@ -41,7 +44,7 @@ export class LoginComponent implements OnInit{
     }
 
     Ingresar(){
-        this.router.navigate(['home']);
+        //this.router.navigate(['home']);
 
         this.loading = true;
    
@@ -52,9 +55,7 @@ export class LoginComponent implements OnInit{
 
         console.log('Esperando...');
 
-        
-      /*this.http.post('http://localhost/gitHub/proyectoTrovan/trovanAPI/public/login/web', datos)
-      //this.http.post(this.rutaService.getRutaApi()+'constructoraKienAPI/public/login/web', datos)
+      this.http.post(this.rutaService.getRutaApi()+'trovanAPI/public/login/web', datos)
         .toPromise()
         .then(
           data => { // Success
@@ -73,9 +74,10 @@ export class LoginComponent implements OnInit{
 
             console.log(msg)
               //console.log(msg.error.error);
-              alert('Error: '+msg.error.error);
+              //alert('Error: '+msg.error.error);
+              this.alertaService.showNotification('bottom','right', 'danger', msg.error.error);
               this.loading = false;
           }
-        );*/
+        );
     }
 }

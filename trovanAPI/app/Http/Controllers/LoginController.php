@@ -45,7 +45,7 @@ class LoginController extends Controller
 
             $user = User::where('user', $request->input('user'))->first();
             if (empty($user)) {
-                return response()->json(['error' => 'User inválido'], 401);
+                return response()->json(['error' => 'User inválido.'], 401);
             }
 
             //En el panel solo se logean todos los tipos de usuarios
@@ -56,7 +56,7 @@ class LoginController extends Controller
             }
 
             if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'Password inválido'], 401);
+                return response()->json(['error' => 'Password inválido.'], 401);
             }
 
             $user = JWTAuth::toUser($token);
@@ -85,7 +85,7 @@ class LoginController extends Controller
 
             $user = User::where('user', $request->input('user'))->first();
             if (empty($user)) {
-                return response()->json(['error' => 'User inválido'], 401);
+                return response()->json(['error' => 'User inválido.'], 401);
             }
 
             //En la app solo se logean todos los tipos de usuarios
@@ -96,7 +96,7 @@ class LoginController extends Controller
             }
 
             if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'Password inválido'], 401);
+                return response()->json(['error' => 'Password inválido.'], 401);
             }
 
             $user = JWTAuth::toUser($token);

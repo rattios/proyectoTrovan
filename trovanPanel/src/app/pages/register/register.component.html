@@ -1,3 +1,7 @@
+<div class="my-container">
+    <ngx-loading [show]="loading"></ngx-loading>
+</div>
+
 <div class="wrapper wrapper-full-page">
     <nav class="navbar navbar-primary navbar-transparent navbar-absolute">
         <div class="container">
@@ -8,18 +12,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/#/dashboard">MD Pro Angular</a>
+                <div class="navbar-brand">
+                    <div>
+                        <img src="/assets/img/trovan.png" height="auto" width="220px"/>
+                    </div>
+                </div>
             </div>
             <div class="collapse navbar-collapse" id="menu-example">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
+                    <!-- <li>
                         <a href="/dashboard">
                             <i class="material-icons">dashboard</i> Dashboard
                         </a>
-                    </li>
+                    </li> -->
                     <li class=" active ">
                         <a href="/pages/register">
-                            <i class="material-icons">person_add</i> Register
+                            <i class="material-icons">person_add</i> Registrate
                         </a>
                     </li>
                     <li class="">
@@ -27,105 +35,749 @@
                             <i class="material-icons">fingerprint</i> Login
                         </a>
                     </li>
-                    <li class="">
+                    <!-- <li class="">
                         <a href="/pages/lock">
                             <i class="material-icons">lock_open</i> Lock
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="full-page register-page" filter-color="black" data-image="../assets/img/register.jpeg">
+    <div class="full-page register-page" filter-color="black" data-image="../assets/img/imagenPlat2.jpeg">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <div class="card card-signup">
-                        <h2 class="card-title text-center">Register</h2>
+                        <h2 class="card-title text-center">Registro</h2>
                         <div class="row">
-                            <div class="col-md-5 col-md-offset-1">
+                            <div class="col-md-10 col-md-offset-1">
                                 <div class="card-content">
-                                    <div class="info info-horizontal">
-                                        <div class="icon icon-rose">
-                                            <i class="material-icons">timeline</i>
+                                    <ul class="nav nav-pills nav-pills-success">
+
+    <!-- <button  class="button-vete" [ngClass]="{'active': registerForm.value.tipo == '4'}" (click)="setTipo('4')">Clinica o Medico Veterinario</button>
+    <button  class="button-asc" [ngClass]="{'active': registerForm.value.tipo == '5'}" (click)="setTipo('5')">Asociaciones</button> -->
+
+                                        <li class="active">
+                                            <a href="#pill2" class="button-vete" data-toggle="tab">Clinica o Medico Veterinario</a>
+                                        </li>
+                                        <li>
+                                            <a href="#pill1" class="button-vete" data-toggle="tab">Asociaciones</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane" id="pill1">
+                                            <form [formGroup]="myFormAsociaciones" novalidate class="form-horizontal">
+                                                <div class="row">
+                                                    <!-- <label class="col-sm-2 label-on-left">Nombre de asociación</label> -->
+                                                    <div class="col-sm-12"> 
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="text" class="form-control" value formControlName="nombre_asociacion" placeholder="Nombre de asociación">
+                                                            <div *ngIf="myFormAsociaciones.get('nombre_asociacion').errors && myFormAsociaciones.get('nombre_asociacion').dirty">
+                                                                <small  class="text-danger" *ngIf="myFormAsociaciones.get('nombre_asociacion').hasError('required')">Este campo es requerido.</small>
+                                                            </div>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!-- <label class="col-sm-2 label-on-left">Matrícula rema</label> -->
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="text" class="form-control" value formControlName="matricula_rema" placeholder="Matrícula rema">
+                                                            <div *ngIf="myFormAsociaciones.get('matricula_rema').errors && myFormAsociaciones.get('matricula_rema').dirty">
+                                                                <small  class="text-danger" *ngIf="myFormAsociaciones.get('matricula_rema').hasError('required')">Este campo es requerido.</small>
+                                                            </div>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <label class="col-sm-2 label-on-left">Ciudad</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <select  id="ciudad" name="ciudad" class="form-control" (change)="setCiudad($event.target.value)" >
+                                                              <option [ngValue]="ciudades.ciudad" *ngFor = "let ciudad of ciudades">{{ciudad.ciudad}}</option>
+                                                            </select>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-sm-2 label-on-left">Provincia</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <select id="provincia" name="provincia" class="form-control" (change)="setProvincia($event.target.value)" formControlName="provincia">
+                                                                <option [value]="provincia.provincia" *ngFor = "let provincia of provincias">
+                                                                        {{provincia.provincia}}
+                                                                </option>
+                                                            </select>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="caso_dir == 1" class="row">
+                                                    <label class="col-sm-2 label-on-left">Dirección</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Zona" formControlName="zona">
+                                                                    <div *ngIf="myFormAsociaciones.get('zona').errors && myFormAsociaciones.get('zona').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormAsociaciones.get('zona').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Av" formControlName="av">
+                                                                    <div *ngIf="myFormAsociaciones.get('av').errors && myFormAsociaciones.get('av').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormAsociaciones.get('av').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-sm-2 label-on-left"></label>
+                                                    <div class="col-sm-10">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Calle" formControlName="calle">
+                                                                    <div *ngIf="myFormAsociaciones.get('calle').errors && myFormAsociaciones.get('calle').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormAsociaciones.get('calle').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="number" class="form-control" placeholder="No" formControlName="nro">
+                                                                    <div *ngIf="myFormAsociaciones.get('nro').errors && myFormAsociaciones.get('nro').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormAsociaciones.get('nro').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="caso_dir == 2" class="row">
+                                                    <label class="col-sm-2 label-on-left">Dirección</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Barrio" formControlName="barrio">
+                                                                    <div *ngIf="myFormAsociaciones.get('barrio').errors && myFormAsociaciones.get('barrio').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormAsociaciones.get('barrio').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Mz" formControlName="mz">
+                                                                    <div *ngIf="myFormAsociaciones.get('mz').errors && myFormAsociaciones.get('mz').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormAsociaciones.get('mz').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Uv" formControlName="uv">
+                                                                    <div *ngIf="myFormAsociaciones.get('uv').errors && myFormAsociaciones.get('uv').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormAsociaciones.get('uv').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-sm-2 label-on-left"></label>
+                                                    <div class="col-sm-10">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Calle" formControlName="calle">
+                                                                    <div *ngIf="myFormAsociaciones.get('calle').errors && myFormAsociaciones.get('calle').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormAsociaciones.get('calle').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Av" formControlName="av">
+                                                                    <div *ngIf="myFormAsociaciones.get('av').errors && myFormAsociaciones.get('av').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormAsociaciones.get('av').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="number" class="form-control" placeholder="No" formControlName="nro">
+                                                                    <div *ngIf="myFormAsociaciones.get('nro').errors && myFormAsociaciones.get('nro').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormAsociaciones.get('nro').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="caso_dir == 3" class="row">
+                                                    <label class="col-sm-2 label-on-left">Dirección</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Municipio" formControlName="municipio">
+                                                                    <div *ngIf="myFormAsociaciones.get('municipio').errors && myFormAsociaciones.get('municipio').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormAsociaciones.get('municipio').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Zona" formControlName="zona">
+                                                                    <div *ngIf="myFormAsociaciones.get('zona').errors && myFormAsociaciones.get('zona').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormAsociaciones.get('zona').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-sm-2 label-on-left"></label>
+                                                    <div class="col-sm-10">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Av" formControlName="av">
+                                                                    <div *ngIf="myFormAsociaciones.get('av').errors && myFormAsociaciones.get('av').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormAsociaciones.get('av').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Calle" formControlName="calle">
+                                                                    <div *ngIf="myFormAsociaciones.get('calle').errors && myFormAsociaciones.get('calle').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormAsociaciones.get('calle').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="number" class="form-control" placeholder="No" formControlName="nro">
+                                                                    <div *ngIf="myFormAsociaciones.get('nro').errors && myFormAsociaciones.get('nro').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormAsociaciones.get('nro').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <!-- <br>
+                                                <br>
+                                                <div class="row">
+                                                    <label class="col-sm-2 label-on-left">Cargo</label>
+                                                    <div class="col-sm-10 radios">
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" name="cargo"  value='Representante' formControlName="cargo" checked="true"> Representante
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" name="cargo" value='Presidente' formControlName="cargo" > Presidente
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br> -->
+                                                <div class="row">
+                                                    <!-- <label class="col-sm-2 label-on-left">Nombre</label> -->
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="text" class="form-control" value formControlName="nombre" placeholder="Nombre">
+                                                            <div *ngIf="myFormAsociaciones.get('nombre').errors && myFormAsociaciones.get('nombre').dirty">
+                                                                <small  class="text-danger" *ngIf="myFormAsociaciones.get('nombre').hasError('required')">Este campo es requerido.</small>
+                                                            </div>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!-- <label class="col-sm-2 label-on-left">Apellido paterno</label> -->
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="text" class="form-control" value formControlName="apellido_paterno" placeholder="Apellido paterno">
+                                                            <div *ngIf="myFormAsociaciones.get('apellido_paterno').errors && myFormAsociaciones.get('apellido_paterno').dirty">
+                                                                <small  class="text-danger" *ngIf="myFormAsociaciones.get('apellido_paterno').hasError('required')">Este campo es requerido.</small>
+                                                            </div>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!-- <label class="col-sm-2 label-on-left">Apellido materno</label> -->
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="text" class="form-control" value formControlName="apellido_materno" placeholder="Apellido materno">
+                                                            <div *ngIf="myFormAsociaciones.get('apellido_materno').errors && myFormAsociaciones.get('apellido_materno').dirty">
+                                                                <small  class="text-danger" *ngIf="myFormAsociaciones.get('apellido_materno').hasError('required')">Este campo es requerido.</small>
+                                                            </div>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!-- <label class="col-sm-2 label-on-left">Email</label> -->
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="email" class="form-control" value formControlName="email" placeholder="Email">
+                                                            <div *ngIf="myFormAsociaciones.get('email').errors && myFormAsociaciones.get('email').dirty">
+                                                                <small  class="text-danger" *ngIf="myFormAsociaciones.get('email').hasError('required')">Este campo es requerido.</small>
+                                                            </div>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!-- <label class="col-sm-2 label-on-left">Teléfono</label> -->
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="text" class="form-control" value formControlName="telefono" placeholder="Teléfono">
+                                                            <div *ngIf="myFormAsociaciones.get('telefono').errors && myFormAsociaciones.get('telefono').dirty">
+                                                                <small  class="text-danger" *ngIf="myFormAsociaciones.get('telefono').hasError('required')">Este campo es requerido.</small>
+                                                            </div>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!-- <label class="col-sm-2 label-on-left">Celular 1</label> -->
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="text" class="form-control" value formControlName="celular_1" placeholder="Celular">
+                                                            <div *ngIf="myFormAsociaciones.get('celular_1').errors && myFormAsociaciones.get('celular_1').dirty">
+                                                                <small  class="text-danger" *ngIf="myFormAsociaciones.get('celular_1').hasError('required')">Este campo es requerido.</small>
+                                                            </div>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!-- <label class="col-sm-2 label-on-left">Celular 2</label> -->
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="text" class="form-control" value formControlName="celular_2" placeholder="Celular 2">
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!-- <label class="col-sm-2 label-on-left">Contraseña</label> -->
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="password" class="form-control" value formControlName="password" placeholder="Contraseña">
+                                                            <div *ngIf="myFormAsociaciones.get('password').errors && myFormAsociaciones.get('password').dirty">
+                                                                <small  class="text-danger" *ngIf="myFormAsociaciones.get('password').hasError('required')">Este campo es requerido.</small>
+                                                            </div>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!-- <label class="col-sm-2 label-on-left">Confirmar contraseña</label> -->
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="password" class="form-control" value formControlName="password_conf" placeholder="Confirmar contraseña">
+                                                            <div *ngIf="myFormAsociaciones.get('password_conf').errors && myFormAsociaciones.get('password_conf').dirty">
+                                                                <small  class="text-danger" *ngIf="myFormAsociaciones.get('password_conf').hasError('required')">Este campo es requerido.</small>
+                                                            </div>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <br>
+                                                <button type="submit" class="btn pull-right btn-fill btn-info" (click)="registrarAsociacion()" [disabled]="myFormAsociaciones.invalid">Registrar</button> 
+                                            </form>
                                         </div>
-                                        <div class="description">
-                                            <h4 class="info-title">Marketing</h4>
-                                            <p class="description">
-                                                We've created the marketing campaign of the website. It was a very interesting collaboration.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="info info-horizontal">
-                                        <div class="icon icon-primary">
-                                            <i class="material-icons">code</i>
-                                        </div>
-                                        <div class="description">
-                                            <h4 class="info-title">Fully Coded in HTML5</h4>
-                                            <p class="description">
-                                                We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="info info-horizontal">
-                                        <div class="icon icon-info">
-                                            <i class="material-icons">group</i>
-                                        </div>
-                                        <div class="description">
-                                            <h4 class="info-title">Built Audience</h4>
-                                            <p class="description">
-                                                There is also a Fully Customizable CMS Admin Dashboard for this product.
-                                            </p>
+                                        <div class="tab-pane active" id="pill2">
+                                            <form [formGroup]="myFormClinicasVeterinarios" novalidate class="form-horizontal">
+                                                <div class="row">
+                                                    <label class="col-sm-2 label-on-left">Colegio médico</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <select name="colegio_medico" class="form-control" formControlName="colegio_medico">
+                                                              <option value="COMVETCRUZ SANTA CRUZ">COMVETCRUZ SANTA CRUZ</option>
+                                                              <option value="COMVETLP LA PAZ">COMVETLP LA PAZ</option>
+                                                              <option value="COMVETCO COCHABAMBA">COMVETCO COCHABAMBA</option>
+                                                              <option value="COMVETCH CHUQUISACA">COMVETCH CHUQUISACA</option>
+                                                              <option value="COMVETOR ORURO">COMVETOR ORURO</option>
+                                                              <option value="COMVETPO POTOSI">COMVETPO POTOSI</option>
+                                                              <option value="COVEZOBE BENI">COVEZOBE BENI</option>
+                                                              <option value="COMVET TARIJA">COMVET TARIJA</option>
+                                                            </select>
+                                                            <div *ngIf="myFormClinicasVeterinarios.get('colegio_medico').errors && myFormClinicasVeterinarios.get('colegio_medico').dirty">
+                                                                <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('colegio_medico').hasError('required')">Este campo es requerido.</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!-- <label class="col-sm-2 label-on-left">Matrícula</label> -->
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="text" class="form-control" value formControlName="matricula" placeholder="Matrícula">
+                                                            <div *ngIf="myFormClinicasVeterinarios.get('matricula').errors && myFormClinicasVeterinarios.get('matricula').dirty">
+                                                                <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('matricula').hasError('required')">Este campo es requerido.</small>
+                                                            </div>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <label class="col-sm-2 label-on-left">Ciudad</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <select id="ciudad2" name="ciudad2" class="form-control" (change)="setCiudad2($event.target.value)">
+                                                              <option [ngValue]="ciudades.ciudad" *ngFor = "let ciudad of ciudades">{{ciudad.ciudad}}</option>
+                                                            </select>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-sm-2 label-on-left">Provincia</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <select id="provincia2" name="provincia2" class="form-control" (change)="setProvincia2($event.target.value)" formControlName="provincia">
+                                                                <option [value]="provincia.provincia" *ngFor = "let provincia of provincias2">
+                                                                        {{provincia.provincia}}
+                                                                </option>
+                                                            </select>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="caso_dir2 == 1" class="row">
+                                                    <label class="col-sm-2 label-on-left">Dirección</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Zona" formControlName="zona">
+                                                                    <div *ngIf="myFormClinicasVeterinarios.get('zona').errors && myFormClinicasVeterinarios.get('zona').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('zona').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Av" formControlName="av">
+                                                                    <div *ngIf="myFormClinicasVeterinarios.get('av').errors && myFormClinicasVeterinarios.get('av').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('av').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-sm-2 label-on-left"></label>
+                                                    <div class="col-sm-10">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Calle" formControlName="calle">
+                                                                    <div *ngIf="myFormClinicasVeterinarios.get('calle').errors && myFormClinicasVeterinarios.get('calle').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('calle').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="number" class="form-control" placeholder="No" formControlName="nro">
+                                                                    <div *ngIf="myFormClinicasVeterinarios.get('nro').errors && myFormClinicasVeterinarios.get('nro').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('nro').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="caso_dir2 == 2" class="row">
+                                                    <label class="col-sm-2 label-on-left">Dirección</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Barrio" formControlName="barrio">
+                                                                    <div *ngIf="myFormClinicasVeterinarios.get('barrio').errors && myFormClinicasVeterinarios.get('barrio').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('barrio').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Mz" formControlName="mz">
+                                                                    <div *ngIf="myFormClinicasVeterinarios.get('mz').errors && myFormClinicasVeterinarios.get('mz').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('mz').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Uv" formControlName="uv">
+                                                                    <div *ngIf="myFormClinicasVeterinarios.get('uv').errors && myFormClinicasVeterinarios.get('uv').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('uv').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-sm-2 label-on-left"></label>
+                                                    <div class="col-sm-10">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Calle" formControlName="calle">
+                                                                    <div *ngIf="myFormClinicasVeterinarios.get('calle').errors && myFormClinicasVeterinarios.get('calle').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('calle').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Av" formControlName="av">
+                                                                    <div *ngIf="myFormClinicasVeterinarios.get('av').errors && myFormClinicasVeterinarios.get('av').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('av').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="number" class="form-control" placeholder="No" formControlName="nro">
+                                                                    <div *ngIf="myFormClinicasVeterinarios.get('nro').errors && myFormClinicasVeterinarios.get('nro').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('nro').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="caso_dir2 == 3" class="row">
+                                                    <label class="col-sm-2 label-on-left">Dirección</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Municipio" formControlName="municipio">
+                                                                    <div *ngIf="myFormClinicasVeterinarios.get('municipio').errors && myFormClinicasVeterinarios.get('municipio').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('municipio').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Zona" formControlName="zona">
+                                                                    <div *ngIf="myFormClinicasVeterinarios.get('zona').errors && myFormClinicasVeterinarios.get('zona').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('zona').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-sm-2 label-on-left"></label>
+                                                    <div class="col-sm-10">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Av" formControlName="av">
+                                                                    <div *ngIf="myFormClinicasVeterinarios.get('av').errors && myFormClinicasVeterinarios.get('av').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('av').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="text" class="form-control" placeholder="Calle" formControlName="calle">
+                                                                    <div *ngIf="myFormClinicasVeterinarios.get('calle').errors && myFormClinicasVeterinarios.get('calle').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('calle').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating is-empty">
+                                                                    <label class="control-label"></label>
+                                                                    <input type="number" class="form-control" placeholder="No" formControlName="nro">
+                                                                    <div *ngIf="myFormClinicasVeterinarios.get('nro').errors && myFormClinicasVeterinarios.get('nro').dirty">
+                                                                        <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('nro').hasError('required')">Este campo es requerido.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>    
+                                                <div class="row">
+                                                    <!-- <label class="col-sm-2 label-on-left">Nombre</label> -->
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="text" class="form-control" value formControlName="nombre" placeholder="Nombre">
+                                                            <div *ngIf="myFormClinicasVeterinarios.get('nombre').errors && myFormClinicasVeterinarios.get('nombre').dirty">
+                                                                <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('nombre').hasError('required')">Este campo es requerido.</small>
+                                                            </div>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!-- <label class="col-sm-2 label-on-left">Apellido paterno</label> -->
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="text" class="form-control" value formControlName="apellido_paterno" placeholder="Apellido paterno">
+                                                            <div *ngIf="myFormClinicasVeterinarios.get('apellido_paterno').errors && myFormClinicasVeterinarios.get('apellido_paterno').dirty">
+                                                                <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('apellido_paterno').hasError('required')">Este campo es requerido.</small>
+                                                            </div>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!-- <label class="col-sm-2 label-on-left">Apellido materno</label> -->
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="text" class="form-control" value formControlName="apellido_materno" placeholder="Apellido materno">
+                                                            <div *ngIf="myFormClinicasVeterinarios.get('apellido_materno').errors && myFormClinicasVeterinarios.get('apellido_materno').dirty">
+                                                                <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('apellido_materno').hasError('required')">Este campo es requerido.</small>
+                                                            </div>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!-- <label class="col-sm-2 label-on-left">Email</label> -->
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="email" class="form-control" value formControlName="email" placeholder="Email">
+                                                            <div *ngIf="myFormClinicasVeterinarios.get('email').errors && myFormClinicasVeterinarios.get('email').dirty">
+                                                                <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('email').hasError('required')">Este campo es requerido.</small>
+                                                            </div>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!-- <label class="col-sm-2 label-on-left">Teléfono</label> -->
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="text" class="form-control" value formControlName="telefono" placeholder="Teléfono">
+                                                            <div *ngIf="myFormClinicasVeterinarios.get('telefono').errors && myFormClinicasVeterinarios.get('telefono').dirty">
+                                                                <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('telefono').hasError('required')">Este campo es requerido.</small>
+                                                            </div>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!-- <label class="col-sm-2 label-on-left">Celular</label> -->
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="text" class="form-control" value formControlName="celular_1" placeholder="Celular">
+                                                            <div *ngIf="myFormClinicasVeterinarios.get('celular_1').errors && myFormClinicasVeterinarios.get('celular_1').dirty">
+                                                                <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('celular_1').hasError('required')">Este campo es requerido.</small>
+                                                            </div>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!-- <label class="col-sm-2 label-on-left">Contraseña</label> -->
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="password" class="form-control" value formControlName="password" placeholder="Contraseña">
+                                                            <div *ngIf="myFormClinicasVeterinarios.get('password').errors && myFormClinicasVeterinarios.get('password').dirty">
+                                                                <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('password').hasError('required')">Este campo es requerido.</small>
+                                                            </div>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!-- <label class="col-sm-2 label-on-left">Confirmar contraseña</label> -->
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="password" class="form-control" value formControlName="password_conf" placeholder="Confirmar contraseña">
+                                                            <div *ngIf="myFormClinicasVeterinarios.get('password_conf').errors && myFormClinicasVeterinarios.get('password_conf').dirty">
+                                                                <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('password_conf').hasError('required')">Este campo es requerido.</small>
+                                                            </div>
+                                                            <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <br>
+                                                <button type="submit" class="btn pull-right btn-fill btn-info" (click)="registrarClinicaVeterinario()" [disabled]="myFormClinicasVeterinarios.invalid">Registrar</button> 
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-5">
-                                <div class="social text-center">
-                                    <button class="btn btn-just-icon btn-round btn-twitter">
-                                        <i class="fa fa-twitter"></i>
-                                    </button>
-                                    <button class="btn btn-just-icon btn-round btn-dribbble">
-                                        <i class="fa fa-dribbble"></i>
-                                    </button>
-                                    <button class="btn btn-just-icon btn-round btn-facebook">
-                                        <i class="fa fa-facebook"> </i>
-                                    </button>
-                                    <h4> or be classical </h4>
-                                </div>
-                                <form class="form" method="" action="">
-                                    <div class="card-content">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">face</i>
-                                            </span>
-                                            <input type="text" class="form-control" placeholder="First Name...">
-                                        </div>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">email</i>
-                                            </span>
-                                            <input type="text" class="form-control" placeholder="Email...">
-                                        </div>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">lock_outline</i>
-                                            </span>
-                                            <input type="password" placeholder="Password..." class="form-control" />
-                                        </div>
-                                        <!-- If you want to add a checkbox to this form, uncomment this code -->
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" name="optionsCheckboxes" checked> I agree to the
-                                                <a href="#something">terms and conditions</a>.
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="footer text-center">
-                                        <a href="#pablo" class="btn btn-primary btn-round">Get Started</a>
-                                    </div>
-                                </form>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -133,7 +785,7 @@
         </div>
         <footer class="footer">
             <div class="container">
-                <nav class="pull-left">
+                <!-- <nav class="pull-left">
                     <ul>
                         <li>
                             <a href="#">
@@ -156,11 +808,11 @@
                             </a>
                         </li>
                     </ul>
-                </nav>
+                </nav> -->
                 <p class="copyright pull-right">
                     &copy;
                     {{test | date: 'yyyy'}}
-                    <a href="https://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                    Trovan Unique
                 </p>
             </div>
         </footer>
