@@ -55,7 +55,6 @@ class AnimalController extends Controller
              !$request->input('pelaje') || !$request->input('color_ojos') ||
              !$request->input('temperamento') || !$request->input('tatuaje') ||
              !$request->input('pediegree') || !$request->input('esterilizado') ||
-             !$request->input('f_ult_vacuna')  || !$request->input('cod_ult_vacuna')||
              !$request->input('microchip') || !$request->input('posicion_implante_id')
         )
         {
@@ -206,6 +205,9 @@ class AnimalController extends Controller
         //$ultima_vacuna_id=$request->input('ultima_vacuna_id'); 
         $f_ult_vacuna=$request->input('f_ult_vacuna');
         $cod_ult_vacuna=$request->input('cod_ult_vacuna');
+        $tipo_ult_vacuna=$request->input('tipo_ult_vacuna');
+        $marca_ult_vacuna=$request->input('marca_ult_vacuna');
+        $origen_ult_vacuna=$request->input('origen_ult_vacuna');
         $microchip=$request->input('microchip'); 
         //$posicion_implante=$request->input('posicion_implante');
         $posicion_implante_id=$request->input('posicion_implante_id');
@@ -369,6 +371,24 @@ class AnimalController extends Controller
         if ($cod_ult_vacuna != null && $cod_ult_vacuna!='')
         {
             $animal->cod_ult_vacuna = $cod_ult_vacuna;
+            $bandera=true;
+        }
+
+        if ($tipo_ult_vacuna != null && $tipo_ult_vacuna!='')
+        {
+            $animal->tipo_ult_vacuna = $tipo_ult_vacuna;
+            $bandera=true;
+        }
+
+        if ($marca_ult_vacuna != null && $marca_ult_vacuna!='')
+        {
+            $animal->marca_ult_vacuna = $marca_ult_vacuna;
+            $bandera=true;
+        }
+
+        if ($origen_ult_vacuna != null && $origen_ult_vacuna!='')
+        {
+            $animal->origen_ult_vacuna = $origen_ult_vacuna;
             $bandera=true;
         }
 

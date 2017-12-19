@@ -29,7 +29,9 @@ class Animal extends Model
 		'especie_id', 'genero', 'raza_id',
 		'peso', 'altura', 'pelaje',
 		'color_ojos', 'temperamento', 'tatuaje',
-		'pediegree', 'esterilizado', 'f_ult_vacuna', 'cod_ult_vacuna',
+		'pediegree', 'esterilizado',
+		'f_ult_vacuna', 'cod_ult_vacuna', 'tipo_ult_vacuna',
+		'marca_ult_vacuna', 'origen_ult_vacuna',
 		'microchip', 'posicion_implante_id', 'otros_rasgos',
 		'madre_id', 'padre_id'];
 

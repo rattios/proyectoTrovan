@@ -47,6 +47,9 @@ class AnimalesMigration extends Migration
             $table->foreign('ultima_vacuna_id')->references('id')->on('tipos_vacunas');*/
             $table->date('f_ult_vacuna')->nullable();
             $table->string('cod_ult_vacuna')->nullable();
+            $table->string('tipo_ult_vacuna')->nullable();
+            $table->string('marca_ult_vacuna')->nullable();
+            $table->string('origen_ult_vacuna')->nullable();
 
             $table->string('microchip')->unique();
 
