@@ -47,6 +47,7 @@ Route::group(  ['middleware' =>'cors'], function(){
         Route::put('/usuarios/{id}','UsuarioController@update');
         Route::delete('/usuarios/{id}','UsuarioController@destroy');
         Route::get('/usuarios/{id}','UsuarioController@show');
+        Route::get('/usuarios/propietario/{cedula}','UsuarioController@showPropietario');
         //Route::get('/usuarios/{id}/pedidos','UsuarioController@usuarioPedidos');
 
         //----Pruebas AnimalController

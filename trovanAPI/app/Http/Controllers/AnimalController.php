@@ -55,7 +55,8 @@ class AnimalController extends Controller
              !$request->input('pelaje') || !$request->input('color_ojos') ||
              !$request->input('temperamento') || !$request->input('tatuaje') ||
              !$request->input('pediegree') || !$request->input('esterilizado') ||
-             !$request->input('microchip') || !$request->input('posicion_implante_id')
+             !$request->input('microchip') || !$request->input('tipo_microchip') ||
+             !$request->input('posicion_implante_id')
         )
         {
             // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.
@@ -209,6 +210,7 @@ class AnimalController extends Controller
         $marca_ult_vacuna=$request->input('marca_ult_vacuna');
         $origen_ult_vacuna=$request->input('origen_ult_vacuna');
         $microchip=$request->input('microchip'); 
+        $tipo_microchip=$request->input('tipo_microchip'); 
         //$posicion_implante=$request->input('posicion_implante');
         $posicion_implante_id=$request->input('posicion_implante_id');
         $otros_rasgos=$request->input('otros_rasgos'); 
@@ -403,6 +405,12 @@ class AnimalController extends Controller
             }
 
             $animal->microchip = $microchip;
+            $bandera=true;
+        }
+
+        if ($tipo_microchip != null && $tipo_microchip!='')
+        {
+            $animal->tipo_microchip = $tipo_microchip;
             $bandera=true;
         }
 

@@ -32,7 +32,7 @@ class Animal extends Model
 		'pediegree', 'esterilizado',
 		'f_ult_vacuna', 'cod_ult_vacuna', 'tipo_ult_vacuna',
 		'marca_ult_vacuna', 'origen_ult_vacuna',
-		'microchip', 'posicion_implante_id', 'otros_rasgos',
+		'microchip', 'tipo_microchip', 'posicion_implante_id', 'otros_rasgos',
 		'madre_id', 'padre_id'];
 
     /**

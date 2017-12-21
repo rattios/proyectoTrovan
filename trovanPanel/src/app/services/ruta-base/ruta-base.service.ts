@@ -4,12 +4,12 @@ import { Injectable } from '@angular/core';
 export class RutaBaseService {
 
   //Local
-  //public api_base = 'http://localhost/gitHub/proyectoTrovan/';
-  //public images_base = 'http://localhost/gitHub/proyectoTrovan/images_uploads/';
+  public api_base = 'http://localhost/gitHub/proyectoTrovan/';
+  public images_base = 'http://localhost/gitHub/proyectoTrovan/images_uploads/';
 
   //Remoto
-  public api_base = 'http://trovan.internow.com.mx/';
-  public images_base = 'http://trovan.internow.com.mx/images_uploads/';
+  //public api_base = 'http://trovan.internow.com.mx/';
+  //public images_base = 'http://trovan.internow.com.mx/images_uploads/';
 
   constructor() { }
 

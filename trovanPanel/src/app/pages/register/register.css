@@ -1,34 +1,29 @@
-/*Loading*/
-.backdrop[_ngcontent-c1]{
-	position: fixed !important;
-}
 
-.button-vete, .button-asc{
-	    height: 60px;
-	    width: 49%;
-	    display: inline-block;
+	.button-vete, .button-asc{
 	    white-space: pre-wrap;
 	    color: #000;
 	    font-weight: bold;
-	    font-size: 12px;
-	    padding: 0px 5px;
+	    font-size: 18px;
+	    padding: 25px 5px;
 	    margin: 0px 0px 20px 0px;
+	    height: 75px;
 	}
-	.button-vete, .button-asc {
+	.button-vete[_ngcontent-c0], .button-asc {
 	    position: relative;
 	    background: #000;
 	    overflow: hidden;
 	    color: #fff;
+	    width: 100%;
 	}
-	.button-vete:before {
+	.button-vete[_ngcontent-c0]:before {
 	    content: ' ';
 	    display: block;
 	    position: absolute;
 	    left: 0;
 	    top: 0;
 	    width: 100%;
-	    height: 100%;
-	    z-index: -1;
+	    height: 75px;
+	    z-index: 0;
 	    opacity: 0.4;
 	    background-image: url('https://cdn.urgente24.com/sites/default/files/notas/2017/08/22/chip.jpg');
 	    background-repeat: no-repeat;
@@ -45,8 +40,8 @@
 	    left: 0;
 	    top: 0;
 	    width: 100%;
-	    height: 100%;
-	    z-index: -1;
+	    height: 75px;
+	    z-index: 0;
 	    opacity: 0.4;
 	    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0bkFzPlqJNn3CtVjhQ_IBKq2BFOXKJhYjsuf68qtHMyp4KUds');
 	    background-repeat: no-repeat;
@@ -55,7 +50,35 @@
 	    -moz-background-size: cover;
 	    -webkit-background-size: cover;
 	    background-size: cover;
+	    background-position: 0px -20px;
 	}
 	.active2{
 		border-bottom: 5px solid #6bbd6e;
+	}
+	.nav-pills:not(.nav-pills-icons) > li > a{
+		border-radius: 2px;
+	}
+	.nav-pills.nav-pills-success > li.active > a{
+		background-color: #000;
+	}
+	.register_nav {
+	    width: 49.5%;
+	}
+	.card .form-horizontal .label-on-left{
+		text-align: left !important;
+	}
+	.btn.btn-info{
+		background-color: #6bbd6e;
+	}
+	.card-title{
+		color: #3a3d3d;
+    	text-decoration: none;
+    	font-weight: 400;
+    	text-transform: uppercase;
+	}
+	.card .form-horizontal .label-on-left, .card .form-horizontal .label-on-right{
+		padding-left: 10px;
+	}
+	.register-page .container{
+		min-height: 50px;
 	}

@@ -52,6 +52,7 @@ class AnimalesMigration extends Migration
             $table->string('origen_ult_vacuna')->nullable();
 
             $table->string('microchip')->unique();
+            $table->string('tipo_microchip'); // Trovan Unique (10 DIGITOS) - Trovan Personalizado (15 DIGITOS)
 
             //$table->text('posicion_implante');
             $table->integer('posicion_implante_id')->unsigned();

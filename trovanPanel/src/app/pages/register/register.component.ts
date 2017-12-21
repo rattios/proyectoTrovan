@@ -36,6 +36,7 @@ export class RegisterComponent implements OnInit{
 
     private data:any;
     public loading = false;
+    public tipo: string = '4';
 
 
     constructor(private http: HttpClient,private router: Router, private rutaService: RutaBaseService, private alertaService: AlertaService, private fb: FormBuilder) { 
@@ -78,7 +79,7 @@ export class RegisterComponent implements OnInit{
             //uv: [null, [Validators.required]],
             nombre: [null, [Validators.required]],
             apellido_paterno: [null, [Validators.required]],
-            apellido_materno: [null, [Validators.required]],
+            apellido_materno: [null],
             email: [null, [Validators.required]],
             telefono: [null, [Validators.required]],
             celular_1: [null, [Validators.required]],
@@ -111,7 +112,7 @@ export class RegisterComponent implements OnInit{
             //uv: [null, [Validators.required]],
             nombre: [null, [Validators.required]],
             apellido_paterno: [null, [Validators.required]],
-            apellido_materno: [null, [Validators.required]],
+            apellido_materno: [null],
             email: [null, [Validators.required]],
             telefono: [null, [Validators.required]],
             celular_1: [null, [Validators.required]],
@@ -139,6 +140,10 @@ export class RegisterComponent implements OnInit{
     };
     ngOnInit(){
         this.checkFullPageBackgroundImage();
+    }
+
+    setTipo(tipo){
+        this.tipo = tipo;
     }
 
     showNotification(from, align, color, message){
@@ -196,7 +201,7 @@ export class RegisterComponent implements OnInit{
                 //uv: [null, [Validators.required]],
                 nombre: [formAux.nombre, [Validators.required]],
                 apellido_paterno: [formAux.apellido_paterno, [Validators.required]],
-                apellido_materno: [formAux.apellido_materno, [Validators.required]],
+                apellido_materno: [formAux.apellido_materno],
                 email: [formAux.email, [Validators.required]],
                 telefono: [formAux.telefono, [Validators.required]],
                 celular_1: [formAux.celular_1, [Validators.required]],
@@ -230,7 +235,7 @@ export class RegisterComponent implements OnInit{
                 uv: [null, [Validators.required]],
                 nombre: [formAux.nombre, [Validators.required]],
                 apellido_paterno: [formAux.apellido_paterno, [Validators.required]],
-                apellido_materno: [formAux.apellido_materno, [Validators.required]],
+                apellido_materno: [formAux.apellido_materno],
                 email: [formAux.email, [Validators.required]],
                 telefono: [formAux.telefono, [Validators.required]],
                 celular_1: [formAux.celular_1, [Validators.required]],
@@ -282,7 +287,7 @@ export class RegisterComponent implements OnInit{
                 //uv: [null, [Validators.required]],
                 nombre: [formAux.nombre, [Validators.required]],
                 apellido_paterno: [formAux.apellido_paterno, [Validators.required]],
-                apellido_materno: [formAux.apellido_materno, [Validators.required]],
+                apellido_materno: [formAux.apellido_materno],
                 email: [formAux.email, [Validators.required]],
                 telefono: [formAux.telefono, [Validators.required]],
                 celular_1: [formAux.celular_1, [Validators.required]],
@@ -316,7 +321,7 @@ export class RegisterComponent implements OnInit{
                 uv: [null, [Validators.required]],
                 nombre: [formAux.nombre, [Validators.required]],
                 apellido_paterno: [formAux.apellido_paterno, [Validators.required]],
-                apellido_materno: [formAux.apellido_materno, [Validators.required]],
+                apellido_materno: [formAux.apellido_materno],
                 email: [formAux.email, [Validators.required]],
                 telefono: [formAux.telefono, [Validators.required]],
                 celular_1: [formAux.celular_1, [Validators.required]],
@@ -359,7 +364,7 @@ export class RegisterComponent implements OnInit{
                 //uv: [null, [Validators.required]],
                 nombre: [formAux.nombre, [Validators.required]],
                 apellido_paterno: [formAux.apellido_paterno, [Validators.required]],
-                apellido_materno: [formAux.apellido_materno, [Validators.required]],
+                apellido_materno: [formAux.apellido_materno],
                 email: [formAux.email, [Validators.required]],
                 telefono: [formAux.telefono, [Validators.required]],
                 celular_1: [formAux.celular_1, [Validators.required]],
@@ -410,7 +415,7 @@ export class RegisterComponent implements OnInit{
                 //uv: [null, [Validators.required]],
                 nombre: [formAux.nombre, [Validators.required]],
                 apellido_paterno: [formAux.apellido_paterno, [Validators.required]],
-                apellido_materno: [formAux.apellido_materno, [Validators.required]],
+                apellido_materno: [formAux.apellido_materno],
                 email: [formAux.email, [Validators.required]],
                 telefono: [formAux.telefono, [Validators.required]],
                 celular_1: [formAux.celular_1, [Validators.required]],
@@ -443,7 +448,7 @@ export class RegisterComponent implements OnInit{
                 uv: [null, [Validators.required]],
                 nombre: [formAux.nombre, [Validators.required]],
                 apellido_paterno: [formAux.apellido_paterno, [Validators.required]],
-                apellido_materno: [formAux.apellido_materno, [Validators.required]],
+                apellido_materno: [formAux.apellido_materno],
                 email: [formAux.email, [Validators.required]],
                 telefono: [formAux.telefono, [Validators.required]],
                 celular_1: [formAux.celular_1, [Validators.required]],
@@ -494,7 +499,7 @@ export class RegisterComponent implements OnInit{
                 //uv: [null, [Validators.required]],
                 nombre: [formAux.nombre, [Validators.required]],
                 apellido_paterno: [formAux.apellido_paterno, [Validators.required]],
-                apellido_materno: [formAux.apellido_materno, [Validators.required]],
+                apellido_materno: [formAux.apellido_materno],
                 email: [formAux.email, [Validators.required]],
                 telefono: [formAux.telefono, [Validators.required]],
                 celular_1: [formAux.celular_1, [Validators.required]],
@@ -527,7 +532,7 @@ export class RegisterComponent implements OnInit{
                 uv: [null, [Validators.required]],
                 nombre: [formAux.nombre, [Validators.required]],
                 apellido_paterno: [formAux.apellido_paterno, [Validators.required]],
-                apellido_materno: [formAux.apellido_materno, [Validators.required]],
+                apellido_materno: [formAux.apellido_materno],
                 email: [formAux.email, [Validators.required]],
                 telefono: [formAux.telefono, [Validators.required]],
                 celular_1: [formAux.celular_1, [Validators.required]],
@@ -569,7 +574,7 @@ export class RegisterComponent implements OnInit{
                 //uv: [null, [Validators.required]],
                 nombre: [formAux.nombre, [Validators.required]],
                 apellido_paterno: [formAux.apellido_paterno, [Validators.required]],
-                apellido_materno: [formAux.apellido_materno, [Validators.required]],
+                apellido_materno: [formAux.apellido_materno],
                 email: [formAux.email, [Validators.required]],
                 telefono: [formAux.telefono, [Validators.required]],
                 celular_1: [formAux.celular_1, [Validators.required]],

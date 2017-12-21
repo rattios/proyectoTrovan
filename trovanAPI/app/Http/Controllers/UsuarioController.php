@@ -242,6 +242,23 @@ class UsuarioController extends Controller
         }
     }
 
+    /*Buscar un propietario por cedula*/
+    public function showPropietario($cedula)
+    {
+        //cargar un usuario
+        $usuario = \App\User::where('ci', $cedula)
+            ->where('tipo_usuario', 6)->get();
+
+
+        if(count($usuario)==0){
+            return response()->json(['error'=>'No existe un propietario con cédula '.$cedula.'.'], 404);          
+        }else{
+
+            return response()->json(['status'=>'ok', 'usuario'=>$usuario[0]], 200);
+        }
+    }
+
+    
     /**
      * Show the form for editing the specified resource.
      *

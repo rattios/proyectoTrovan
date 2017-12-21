@@ -20,11 +20,12 @@ import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
   imports: [
     LoadingModule.forRoot({
         animationType: ANIMATION_TYPES.circleSwish,
-        backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
+        backdropBackgroundColour: 'rgba(0,0,0,0.3)', 
         backdropBorderRadius: '4px',
         primaryColour: '#ffffff', 
         secondaryColour: '#ffffff', 
-        tertiaryColour: '#ffffff'
+        tertiaryColour: '#ffffff',
+        fullScreenBackdrop: true
     }),
     CommonModule,
     RouterModule.forChild(PagesRoutes),

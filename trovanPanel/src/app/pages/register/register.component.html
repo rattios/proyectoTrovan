@@ -26,13 +26,13 @@
                         </a>
                     </li> -->
                     <li class=" active ">
-                        <a href="/pages/register">
+                        <a routerLink="/pages/register">
                             <i class="material-icons">person_add</i> Registrate
                         </a>
                     </li>
                     <li class="">
-                        <a href="/pages/login">
-                            <i class="material-icons">fingerprint</i> Login
+                        <a routerLink="/pages/login">
+                            <i class="material-icons">fingerprint</i> INICIAR SESION
                         </a>
                     </li>
                     <!-- <li class="">
@@ -55,14 +55,11 @@
                                 <div class="card-content">
                                     <ul class="nav nav-pills nav-pills-success">
 
-    <!-- <button  class="button-vete" [ngClass]="{'active': registerForm.value.tipo == '4'}" (click)="setTipo('4')">Clinica o Medico Veterinario</button>
-    <button  class="button-asc" [ngClass]="{'active': registerForm.value.tipo == '5'}" (click)="setTipo('5')">Asociaciones</button> -->
-
-                                        <li class="active">
-                                            <a href="#pill2" class="button-vete" data-toggle="tab">Clinica o Medico Veterinario</a>
+                                        <li class="active register_nav">
+                                            <a href="#pill2" class="button-vete" [ngClass]="{'active2': tipo == '4'}" (click)="setTipo('4')" data-toggle="tab">Clinica o Medico Veterinario</a>
                                         </li>
-                                        <li>
-                                            <a href="#pill1" class="button-vete" data-toggle="tab">Asociaciones</a>
+                                        <li class="register_nav">
+                                            <a href="#pill1" class="button-asc"  [ngClass]="{'active2': tipo == '5'}" (click)="setTipo('5')" data-toggle="tab">Asociaciones</a>
                                         </li>
                                     </ul>
                                     <div class="tab-content">
@@ -96,8 +93,8 @@
                                                 </div>
                                                 <br>
                                                 <div class="row">
-                                                    <label class="col-sm-2 label-on-left">Ciudad</label>
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-12">
+                                                        <label class="col-sm-12 label-on-left">Ciudad</label>
                                                         <div class="form-group label-floating is-empty">
                                                             <label class="control-label"></label>
                                                             <select  id="ciudad" name="ciudad" class="form-control" (change)="setCiudad($event.target.value)" >
@@ -108,8 +105,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <label class="col-sm-2 label-on-left">Provincia</label>
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-12">
+                                                        <label class="col-sm-12 label-on-left">Provincia</label>
                                                         <div class="form-group label-floating is-empty">
                                                             <label class="control-label"></label>
                                                             <select id="provincia" name="provincia" class="form-control" (change)="setProvincia($event.target.value)" formControlName="provincia">
@@ -122,8 +119,8 @@
                                                     </div>
                                                 </div>
                                                 <div *ngIf="caso_dir == 1" class="row">
-                                                    <label class="col-sm-2 label-on-left">Dirección</label>
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-12">
+                                                        <label class="col-sm-12 label-on-left">Dirección</label>
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group label-floating is-empty">
@@ -145,8 +142,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <label class="col-sm-2 label-on-left"></label>
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-12">
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group label-floating is-empty">
@@ -170,8 +166,8 @@
                                                     </div>
                                                 </div>
                                                 <div *ngIf="caso_dir == 2" class="row">
-                                                    <label class="col-sm-2 label-on-left">Dirección</label>
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-12">
+                                                        <label class="col-sm-12 label-on-left">Dirección</label>
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="form-group label-floating is-empty">
@@ -202,8 +198,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <label class="col-sm-2 label-on-left"></label>
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-12">
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="form-group label-floating is-empty">
@@ -236,8 +231,8 @@
                                                     </div>
                                                 </div>
                                                 <div *ngIf="caso_dir == 3" class="row">
-                                                    <label class="col-sm-2 label-on-left">Dirección</label>
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-12">
+                                                        <label class="col-sm-12 label-on-left">Dirección</label>
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group label-floating is-empty">
@@ -259,8 +254,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <label class="col-sm-2 label-on-left"></label>
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-12">
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="form-group label-floating is-empty">
@@ -316,7 +310,7 @@
                                                     <div class="col-sm-12">
                                                         <div class="form-group label-floating is-empty">
                                                             <label class="control-label"></label>
-                                                            <input type="text" class="form-control" value formControlName="nombre" placeholder="Nombre">
+                                                            <input type="text" class="form-control" value formControlName="nombre" placeholder="Nombre del Representante o Presidente">
                                                             <div *ngIf="myFormAsociaciones.get('nombre').errors && myFormAsociaciones.get('nombre').dirty">
                                                                 <small  class="text-danger" *ngIf="myFormAsociaciones.get('nombre').hasError('required')">Este campo es requerido.</small>
                                                             </div>
@@ -343,9 +337,6 @@
                                                         <div class="form-group label-floating is-empty">
                                                             <label class="control-label"></label>
                                                             <input type="text" class="form-control" value formControlName="apellido_materno" placeholder="Apellido materno">
-                                                            <div *ngIf="myFormAsociaciones.get('apellido_materno').errors && myFormAsociaciones.get('apellido_materno').dirty">
-                                                                <small  class="text-danger" *ngIf="myFormAsociaciones.get('apellido_materno').hasError('required')">Este campo es requerido.</small>
-                                                            </div>
                                                             <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
                                                         </div>
                                                     </div>
@@ -427,14 +418,15 @@
                                                 </div>
                                                 
                                                 <br>
-                                                <button type="submit" class="btn pull-right btn-fill btn-info" (click)="registrarAsociacion()" [disabled]="myFormAsociaciones.invalid">Registrar</button> 
+                                                <button type="submit" class="btn pull-right btn-fill btn-success" (click)="registrarAsociacion()" [disabled]="myFormAsociaciones.invalid">Registrar</button> 
                                             </form>
                                         </div>
                                         <div class="tab-pane active" id="pill2">
                                             <form [formGroup]="myFormClinicasVeterinarios" novalidate class="form-horizontal">
                                                 <div class="row">
-                                                    <label class="col-sm-2 label-on-left">Colegio médico</label>
-                                                    <div class="col-sm-10">
+                                                    
+                                                    <div class="col-sm-12">
+                                                        <label class="col-sm-12 label-on-left">Colegio médico</label>
                                                         <div class="form-group label-floating is-empty">
                                                             <label class="control-label"></label>
                                                             <select name="colegio_medico" class="form-control" formControlName="colegio_medico">
@@ -468,8 +460,8 @@
                                                 </div>
                                                 <br>
                                                 <div class="row">
-                                                    <label class="col-sm-2 label-on-left">Ciudad</label>
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-12">
+                                                        <label class="col-sm-12 label-on-left">Ciudad</label>
                                                         <div class="form-group label-floating is-empty">
                                                             <label class="control-label"></label>
                                                             <select id="ciudad2" name="ciudad2" class="form-control" (change)="setCiudad2($event.target.value)">
@@ -480,8 +472,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <label class="col-sm-2 label-on-left">Provincia</label>
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-12">
+                                                        <label class="col-sm-12 label-on-left">Provincia</label>
                                                         <div class="form-group label-floating is-empty">
                                                             <label class="control-label"></label>
                                                             <select id="provincia2" name="provincia2" class="form-control" (change)="setProvincia2($event.target.value)" formControlName="provincia">
@@ -494,8 +486,8 @@
                                                     </div>
                                                 </div>
                                                 <div *ngIf="caso_dir2 == 1" class="row">
-                                                    <label class="col-sm-2 label-on-left">Dirección</label>
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-12">
+                                                        <label class="col-sm-12 label-on-left">Dirección</label>
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group label-floating is-empty">
@@ -517,8 +509,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <label class="col-sm-2 label-on-left"></label>
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-12">
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group label-floating is-empty">
@@ -542,8 +533,8 @@
                                                     </div>
                                                 </div>
                                                 <div *ngIf="caso_dir2 == 2" class="row">
-                                                    <label class="col-sm-2 label-on-left">Dirección</label>
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-12">
+                                                        <label class="col-sm-12 label-on-left">Dirección</label>
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="form-group label-floating is-empty">
@@ -574,8 +565,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <label class="col-sm-2 label-on-left"></label>
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-12">
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="form-group label-floating is-empty">
@@ -608,8 +598,8 @@
                                                     </div>
                                                 </div>
                                                 <div *ngIf="caso_dir2 == 3" class="row">
-                                                    <label class="col-sm-2 label-on-left">Dirección</label>
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-12">
+                                                        <label class="col-sm-12 label-on-left">Dirección</label>
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group label-floating is-empty">
@@ -631,8 +621,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <label class="col-sm-2 label-on-left"></label>
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-12">
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="form-group label-floating is-empty">
@@ -697,9 +686,6 @@
                                                         <div class="form-group label-floating is-empty">
                                                             <label class="control-label"></label>
                                                             <input type="text" class="form-control" value formControlName="apellido_materno" placeholder="Apellido materno">
-                                                            <div *ngIf="myFormClinicasVeterinarios.get('apellido_materno').errors && myFormClinicasVeterinarios.get('apellido_materno').dirty">
-                                                                <small  class="text-danger" *ngIf="myFormClinicasVeterinarios.get('apellido_materno').hasError('required')">Este campo es requerido.</small>
-                                                            </div>
                                                             <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
                                                         </div>
                                                     </div>
@@ -771,7 +757,7 @@
                                                 </div>
                                                 
                                                 <br>
-                                                <button type="submit" class="btn pull-right btn-fill btn-info" (click)="registrarClinicaVeterinario()" [disabled]="myFormClinicasVeterinarios.invalid">Registrar</button> 
+                                                <button type="submit" class="btn pull-right btn-fill btn-success" (click)="registrarClinicaVeterinario()" [disabled]="myFormClinicasVeterinarios.invalid">Registrar</button> 
                                             </form>
                                         </div>
                                     </div>
