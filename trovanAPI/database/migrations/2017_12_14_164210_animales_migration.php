@@ -24,7 +24,7 @@ class AnimalesMigration extends Migration
 
             $table->string('nombre_animal');
             $table->date('f_nacimiento');
-            $table->integer('edad');
+            $table->string('edad');
 
             $table->integer('especie_id')->unsigned();
             $table->foreign('especie_id')->references('id')->on('especies');

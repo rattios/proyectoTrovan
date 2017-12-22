@@ -431,22 +431,22 @@
                         <div class="col-md-10 col-md-offset-1">
                             <form [formGroup]="myFormAnimales" novalidate class="form-horizontal">
                                 <div class="card-header card-header-text" data-background-color="green">
-                                    <h4 class="card-title">Información del animal</h4>
+                                    <h4 class="card-title">FICHA ANIMAL</h4>
                                 </div>
                                 <div class="card-content">
                                     <br>
                                     <br>
                                     <div class="row">
-                                        <div class="col-md-3 col-sm-4" style="display:block; margin:auto">
-                                            <legend>Foto</legend>
-                                            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                        <div class="col-md-12 col-sm-12">
+                                            <label class="col-sm-12 label-on-left">Foto del animal</label> 
+                                            <div class="fileinput fileinput-new text-center" data-provides="fileinput" style="display:block; margin:auto">
                                                 <div class="fileinput-new thumbnail img-circle">
                                                     <img src="../../assets/img/placeholder.jpg" alt="...">
                                                 </div>
                                                 <div class="fileinput-preview fileinput-exists thumbnail img-circle"></div>
                                                 <div>
-                                                    <span class="btn btn-round btn-info btn-file">
-                                                        <span class="fileinput-new">Add Foto</span>
+                                                    <span class="btn btn-round btn-info btn-file btn-green">
+                                                        <span class="fileinput-new">Agregar Foto</span>
                                                         <span class="fileinput-exists">Cambiar</span>
                                                         <input type="file" name="..." />
                                                     </span>
@@ -463,7 +463,7 @@
                                             <label class="col-sm-12 label-on-left">Propietario del animal</label> 
                                             <div class="form-group label-floating is-empty">
                                                 <label class="control-label"></label>
-                                                <input type="text" class="form-control" value formControlName="propietario_nombre">
+                                                <input type="text" class="form-control" name="propietario_nombre" formControlName="propietario_nombre">
                                                 <div *ngIf="myFormAnimales.get('propietario_nombre').errors && myFormAnimales.get('propietario_nombre').dirty">
                                                     <small  class="text-danger" *ngIf="myFormAnimales.get('propietario_nombre').hasError('required')">Este campo es requerido.</small>
                                                 </div>
@@ -475,292 +475,283 @@
                                         <div class="col-sm-12">
                                             <div class="form-group label-floating is-empty">
                                                 <label class="control-label"></label>
-                                                <input type="text" class="form-control" value formControlName="nombre_animal" placeholder="Nombre del animal">
+                                                <input type="text" class="form-control" name="nombre_animal" formControlName="nombre_animal" placeholder="Nombre del animal">
                                                 <div *ngIf="myFormAnimales.get('nombre_animal').errors && myFormAnimales.get('nombre_animal').dirty">
                                                     <small  class="text-danger" *ngIf="myFormAnimales.get('nombre_animal').hasError('required')">Este campo es requerido.</small>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="row">
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-5 col-md-5">
                                             <div class="form-group label-floating is-empty">
                                                 <label class="control-label"></label>
-                                                <input type="text" class="form-control datepicker" formControlName="f_nacimiento" placeholder="Fecha de nacimiento" value="10/10/2016">
+                                                <input type="text" class="form-control datepicker" name="f_nacimiento" formControlName="f_nacimiento" placeholder="Fecha de nacimiento">
                                                 <div *ngIf="myFormAnimales.get('f_nacimiento').errors && myFormAnimales.get('f_nacimiento').dirty">
                                                     <small  class="text-danger" *ngIf="myFormAnimales.get('f_nacimiento').hasError('required')">Este campo es requerido.</small>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-2 label-on-left">Edad</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-4 col-md-4">
                                             <div class="form-group label-floating is-empty">
                                                 <label class="control-label"></label>
-                                                <input type="number" class="form-control" value>
-                                                <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                <input type="text" class="form-control" formControlName="edad" name="edad" placeholder="Edad">
+                                                <div *ngIf="myFormAnimales.get('edad').errors && myFormAnimales.get('edad').dirty">
+                                                    <small class="text-danger" *ngIf="myFormAnimales.get('edad').hasError('required')">Este campo es requerido.</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                            <div class="row">
+                                                <label class="col-sm-12 label-on-left">Género</label>
+                                                <div class="col-sm-12 radios">
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="genero" value="Macho" formControlName="genero"> Macho
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="genero" value="Hembra" formControlName="genero"> Hembra
+                                                        </label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <br>
                                     <div class="row">
-                                        <label class="col-sm-2 label-on-left">Sexo</label>
-                                        <div class="col-sm-10 radios">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" checked="true"> Macho
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios"> Hembra
-                                                </label>
-                                            </div>
+                                        <div class="col-sm-6">
+                                            <label class="col-sm-12 label-on-left">Especie</label> 
+                                            <select name="especie_id" formControlName="especie_id" class="form-control">
+                                              <option [value]="especie.id" *ngFor = "let especie of especies">{{especie.nombre_especie}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="col-sm-12 label-on-left">Raza</label> 
+                                            <select name="raza_id" formControlName="raza_id" class="form-control">
+                                              <option [value]="raza.id" *ngFor = "let raza of razas">{{raza.nombre_raza}}</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <br>
                                     <div class="row">
-                                        <label class="col-sm-2 label-on-left">Raza</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-4">
                                             <div class="form-group label-floating is-empty">
                                                 <label class="control-label"></label>
-                                                <input type="text" class="form-control" value>
-                                                <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                <input type="text" class="form-control" formControlName="peso" name="peso" placeholder="Peso (Kg)">
+                                                <div *ngIf="myFormAnimales.get('peso').errors && myFormAnimales.get('peso').dirty">
+                                                    <small  class="text-danger" *ngIf="myFormAnimales.get('peso').hasError('required')">Este campo es requerido.</small>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-2 label-on-left">Especie</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-4">
                                             <div class="form-group label-floating is-empty">
                                                 <label class="control-label"></label>
-                                                <input type="text" class="form-control" value>
-                                                <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                <input type="text" class="form-control" formControlName="altura" name="altura" placeholder="Altura (Cm)">
+                                                <div *ngIf="myFormAnimales.get('altura').errors && myFormAnimales.get('altura').dirty">
+                                                    <small  class="text-danger" *ngIf="myFormAnimales.get('altura').hasError('required')">Este campo es requerido.</small>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-2 label-on-left">Color</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-4">
                                             <div class="form-group label-floating is-empty">
                                                 <label class="control-label"></label>
-                                                <input type="text" class="form-control" value>
-                                                <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                <input type="text" class="form-control" name="pelaje" formControlName="pelaje" placeholder="Pelaje">
+                                                <div *ngIf="myFormAnimales.get('pelaje').errors && myFormAnimales.get('pelaje').dirty">
+                                                    <small  class="text-danger" *ngIf="myFormAnimales.get('pelaje').hasError('required')">Este campo es requerido.</small>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="row">
-                                        <label class="col-sm-2 label-on-left">Peso (Kg)</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-4">
                                             <div class="form-group label-floating is-empty">
                                                 <label class="control-label"></label>
-                                                <input type="number" class="form-control" value>
-                                                <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                <input type="text" class="form-control" name="color_ojos" formControlName="color_ojos" placeholder="Color de ojos">
+                                                <div *ngIf="myFormAnimales.get('color_ojos').errors && myFormAnimales.get('color_ojos').dirty">
+                                                    <small  class="text-danger" *ngIf="myFormAnimales.get('color_ojos').hasError('required')">Este campo es requerido.</small>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <label class="col-sm-2 label-on-left">¿Esterilizado?</label>
-                                        <div class="col-sm-10 radios">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios"> Si
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios"> No
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <br>
-                                    <div class="row">
-                                        <label class="col-sm-2 label-on-left">¿Tatuaje?</label>
-                                        <div class="col-sm-10 radios">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios"> Si
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios"> No
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <br>
-                                    <div class="row">
-                                        <label class="col-sm-2 label-on-left">¿Reproductor?</label>
-                                        <div class="col-sm-10 radios">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios"> Si
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios"> No
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <br>
-                                    <div class="row">
-                                        <label class="col-sm-2 label-on-left">Padre</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-8">
                                             <div class="form-group label-floating is-empty">
                                                 <label class="control-label"></label>
-                                                <input type="text" class="form-control" value>
-                                                <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-2 label-on-left">Madre</label>
-                                        <div class="col-sm-10">
-                                            <div class="form-group label-floating is-empty">
-                                                <label class="control-label"></label>
-                                                <input type="text" class="form-control" value>
-                                                <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                <input type="text" class="form-control" name="temperamento" formControlName="temperamento" placeholder="Temperamento">
+                                                <div *ngIf="myFormAnimales.get('temperamento').errors && myFormAnimales.get('temperamento').dirty">
+                                                    <small  class="text-danger" *ngIf="myFormAnimales.get('temperamento').hasError('required')">Este campo es requerido.</small>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <br>
                                     <div class="row">
-                                        <label class="col-sm-2 label-on-left">¿Cirugías?</label>
-                                        <div class="col-sm-10 radios">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios"> Si
-                                                </label>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-12 label-on-left">¿Tatuaje?</label>
+                                                <div class="col-sm-12 radios">
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="tatuaje" value="Si" formControlName="tatuaje"> Si
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="tatuaje" value="No" formControlName="tatuaje"> No
+                                                        </label>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios"> No
-                                                </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-12 label-on-left">¿Pediegree?</label>
+                                                <div class="col-sm-12 radios">
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="pediegree" value='Si' formControlName="pediegree"> Si
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="pediegree" value='No' formControlName="pediegree" > No
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-12 label-on-left">¿Esterilizado?</label>
+                                                <div class="col-sm-12 radios">
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="esterilizado" value="Si" formControlName="esterilizado"> Si
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="esterilizado" value="No" formControlName="esterilizado"> No
+                                                        </label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <br>
                                     <div class="row">
-                                        <label class="col-sm-2 label-on-left">Fecha de la cirugía</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-5 col-md-5">
                                             <div class="form-group label-floating is-empty">
                                                 <label class="control-label"></label>
-                                                <input type="text" class="form-control datepicker" value="10/10/2016" />
-                                                <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                <input type="text" class="form-control datepicker" name="f_ult_vacuna" formControlName="f_ult_vacuna" placeholder="Fecha de la última inmunización" value="10/10/2016">
+                                                <div *ngIf="myFormAnimales.get('f_ult_vacuna').errors && myFormAnimales.get('f_ult_vacuna').dirty">
+                                                    <small  class="text-danger" *ngIf="myFormAnimales.get('f_ult_vacuna').hasError('required')">Este campo es requerido.</small>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-2 label-on-left">Descripción de la cirugía</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-7 col-md-7">
                                             <div class="form-group label-floating is-empty">
                                                 <label class="control-label"></label>
-                                                <textarea class="form-control" placeholder="" rows="5"></textarea>
-                                                <!-- <span class="help-block">A block of help text that breaks onto a new line.</span> -->
+                                                <input type="text" class="form-control" name="tipo_ult_vacuna" formControlName="tipo_ult_vacuna" placeholder="Tipo de vacuna">
+                                                <div *ngIf="myFormAnimales.get('tipo_ult_vacuna').errors && myFormAnimales.get('tipo_ult_vacuna').dirty">
+                                                    <small class="text-danger" *ngIf="myFormAnimales.get('tipo_ult_vacuna').hasError('required')">Este campo es requerido.</small>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <br>
+                                    <div class="row">
+                                        <div class="col-sm-7 col-md-7">
+                                            <div class="form-group label-floating is-empty">
+                                                <label class="control-label"></label>
+                                                <input type="text" class="form-control" name="marca_ult_vacuna" formControlName="marca_ult_vacuna" placeholder="Marca de la vacuna">
+                                                <div *ngIf="myFormAnimales.get('marca_ult_vacuna').errors && myFormAnimales.get('marca_ult_vacuna').dirty">
+                                                    <small  class="text-danger" *ngIf="myFormAnimales.get('marca_ult_vacuna').hasError('required')">Este campo es requerido.</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5 col-md-5">
+                                            <div class="row">
+                                                <label class="col-sm-12 label-on-left">Origen de la vacuna</label>
+                                                <div class="col-sm-12 radios">
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="origen_ult_vacuna" value="Donada" formControlName="origen_ult_vacuna"> Donada en una campaña
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="origen_ult_vacuna" value="Comprada" formControlName="origen_ult_vacuna"> Comprada en una veterinaria
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <br>
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <legend>Enfermedades</legend>
-                                            <input type="text" value="enfemedad1,enfermedad2" class="tagsinput" data-role="tagsinput" data-color="rose" />
-                                            <!-- You can change data-color="rose" with one of our colors primary | warning | info | danger | success -->
-                                        </div>
-                                    </div>
-
-
-                                    <!-- <div class="row">
-                                        <label class="col-sm-2 label-on-left">Password</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-7 col-md-7">
                                             <div class="form-group label-floating is-empty">
                                                 <label class="control-label"></label>
-                                                <input type="password" class="form-control" value>
+                                                <input type="text" class="form-control" formControlName="microchip" name="microchip" placeholder="Microchip">
+                                                <div *ngIf="myFormAnimales.get('microchip').errors && myFormAnimales.get('microchip').dirty">
+                                                    <small  class="text-danger" *ngIf="myFormAnimales.get('microchip').hasError('required')">Este campo es requerido.</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5 col-md-5">
+                                            <div class="row">
+                                                <label class="col-sm-12 label-on-left">Tipo de microchip</label>
+                                                <div class="col-sm-12 radios">
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="tipo_microchip" value="Trovan Unique" formControlName="tipo_microchip"> Trovan Unique
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="tipo_microchip" value="Trovan Personalizado" formControlName="tipo_microchip"> Trovan Personalizado
+                                                        </label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="row">
-                                        <label class="col-sm-2 label-on-left">Placeholder</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-12">
+                                            <label class="col-sm-12 label-on-left">Posición del implante</label> 
+                                            <select name="posicion_implante_id" formControlName="posicion_implante_id" class="form-control">
+                                              <option [value]="posicion.id" *ngFor = "let posicion of posImplantes">{{posicion.posicion}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
                                             <div class="form-group label-floating is-empty">
                                                 <label class="control-label"></label>
-                                                <input type="text" class="form-control" placeholder="placeholder">
+                                                <textarea class="form-control" formControlName="otros_rasgos" name="otros_rasgos" placeholder="Otros rasgos" rows="5"></textarea>
                                             </div>
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="row">
-                                        <label class="col-sm-2 label-on-left">Disabled</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-6 col-md-6">
                                             <div class="form-group label-floating is-empty">
                                                 <label class="control-label"></label>
-                                                <input type="text" placeholder="Disabled input here..." disabled="" class="form-control">
+                                                <input type="text" class="form-control" formControlName="padre_id" name="padre_id" placeholder="Padre del animal">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                            <div class="form-group label-floating is-empty">
+                                                <label class="control-label"></label>
+                                                <input type="text" class="form-control" formControlName="madre_id" name="madre_id" placeholder="Madre del animal">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <label class="col-sm-2 label-on-left">Static control</label>
-                                        <div class="col-sm-10">
-                                            <div class="form-group">
-                                                <p class="form-control-static">hello@creative-tim.com</p>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                    <!-- <div class="row">
-                                        <label class="col-sm-2 label-on-left">Checkboxes and radios</label>
-                                        <div class="col-sm-10 checkbox-radios">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="optionsCheckboxes"> First Checkbox
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="optionsCheckboxes"> Second Checkbox
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" checked="true"> First Radio
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios"> Second Radio
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-2 label-on-left">Inline checkboxes</label>
-                                        <div class="col-sm-10">
-                                            <div class="checkbox checkbox-inline">
-                                                <label>
-                                                    <input type="checkbox" name="optionsCheckboxes">a
-                                                </label>
-                                            </div>
-                                            <div class="checkbox checkbox-inline">
-                                                <label>
-                                                    <input type="checkbox" name="optionsCheckboxes">b
-                                                </label>
-                                            </div>
-                                            <div class="checkbox checkbox-inline">
-                                                <label>
-                                                    <input type="checkbox" name="optionsCheckboxes">c
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                    
                                     <br>
                                     <button class="btn pull-left btn-fill" (click)="showBusqueda()">Atras</button>
                                     <button type="submit" class="btn pull-right btn-fill btn-success">Agregar</button>

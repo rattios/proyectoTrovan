@@ -1,3 +1,11 @@
 .card .form-horizontal .label-on-left{
-		text-align: left !important;
-	}
+	text-align: left !important;
+	padding-left: 0px !important;
+}
+.btn-green{
+    background-color: #4aa54e;
+    color: #FFFFFF;
+}
+.radio input[type=radio]:checked ~ .check {
+    background-color: #dc1500 !important;
+}

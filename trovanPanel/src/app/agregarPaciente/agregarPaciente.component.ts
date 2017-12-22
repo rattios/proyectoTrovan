@@ -63,6 +63,16 @@ export class AgregarPacienteComponent implements OnInit, AfterViewInit{
     //Casos 1 por defecto para las direcciones
     public caso_dir = 1;
 
+    test : Date = new Date();
+
+    dia = this.test.getDate();
+    mes = this.test.getMonth() + 1;
+    anio = this.test.getFullYear();
+
+    hora = this.test.getHours();
+    minutos = this.test.getMinutes();
+    segundos = this.test.getSeconds();
+
     constructor(private http: HttpClient,private router: Router, private rutaService: RutaBaseService, private alertaService: AlertaService, private fb: FormBuilder) { 
        this.ciudades = [{id:0, ciudad: 'La Paz', provincias: [{id:1, provincia: 'Pedro Domingo Murillo'}, {id:2, provincia:'Sud Yungas'},{id:3, provincia: 'Pacajes'},{id:4, provincia: 'Omasuyos'},{id:5, provincia: 'Nor Yungas'},{id:6, provincia: 'Muñecas'},{id:7, provincia: 'Manco Kapac'},{id:8, provincia: 'Los Andes'},{id:9, provincia: 'Larecaja'},{id:10, provincia: 'Jose Ramon Loayza'},
                 {id:11, provincia: 'Jose Manuel Pando'},{id:12, provincia: 'Inquisivi'},{id:13, provincia: 'Ingavi'},{id:14, provincia: 'Gualberto Villarroel'},{id:15, provincia: 'Franz Tamayo'},{id:16, provincia: 'Eliodoro Camacho'},{id:17, provincia: 'Caranavi'},{id:18, provincia: 'Bautista Saavedra'},{id:19, provincia: 'Aroma'},{id:20, provincia: 'Abel Iturralde'}]},
@@ -120,8 +130,8 @@ export class AgregarPacienteComponent implements OnInit, AfterViewInit{
             propietario_nombre: [{value: null, disabled: true}],
             veterinario_id: [1],
             nombre_animal: [null, [Validators.required]],
-            f_nacimiento: [null, [Validators.required]],
-            edad: [null, [Validators.required]],
+            f_nacimiento: [this.dia+'-'+this.mes+'-'+this.anio, [Validators.required]],
+            edad: [{value: this.calcularEdad(this.dia+'-'+this.mes+'-'+this.anio), disabled: true}],
             especie_id: [null, [Validators.required]],
             genero: ['Macho', [Validators.required]],
             raza_id: [null, [Validators.required]],
@@ -145,6 +155,14 @@ export class AgregarPacienteComponent implements OnInit, AfterViewInit{
             padre_id: [null]
         });
 
+        console.log('Edad actual: '+this.calcularEdad(this.dia+'-'+this.mes+'-'+this.anio));
+
+        
+
+    }
+
+    dateInput(fecha){
+        alert('Cambio de fecha');
     }
 
     ngOnInit(){
@@ -157,7 +175,8 @@ export class AgregarPacienteComponent implements OnInit, AfterViewInit{
         }
         
         $('.datepicker').datetimepicker({
-            format: 'MM/DD/YYYY',
+            format: 'DD-MM-YYYY',
+            date: new Date(),
             icons: {
                 time: "fa fa-clock-o",
                 date: "fa fa-calendar",
@@ -170,7 +189,21 @@ export class AgregarPacienteComponent implements OnInit, AfterViewInit{
                 close: 'fa fa-remove',
                 inline: true
             }
-         });
+        }).on('dp.change', function (e) {
+             //alert('hola '+ $('#datepicker').data("DateTimePicker"));
+
+             //console.log($('#datepicker').data("DateTimePicker").date(e.date));
+
+             //$('#datetimepicker').data("DateTimePicker").FUNCTION()
+
+             //console.log(e.oldDate._i);
+             //console.log(e.date._i);
+
+             console.log(e.currentTarget.value);
+             //this.myFormAnimales.patchValue({edad : this.calcularEdad(e.currentTarget.value)}); 
+             //console.log(this.calcularEdad(e.currentTarget.value));
+
+        });
 
     }
 
@@ -614,6 +647,78 @@ export class AgregarPacienteComponent implements OnInit, AfterViewInit{
               }
             );
         }
+    }
+
+    calcularEdad(fecha) {
+        // Si la fecha es correcta, calculamos la edad
+
+        /*if (typeof fecha != "string" && fecha && this.esNumero(fecha.getTime())) {
+            fecha = formatDate(fecha, "yyyy-MM-dd");
+        }*/
+
+        var values = fecha.split("-");
+        var dia = values[0];
+        var mes = values[1];
+        var ano = values[2];
+
+        // cogemos los valores actuales
+        var fecha_hoy = new Date();
+        var ahora_ano = fecha_hoy.getFullYear();
+        var ahora_mes = fecha_hoy.getMonth() + 1;
+        var ahora_dia = fecha_hoy.getDate();
+
+        // realizamos el calculo
+        var edad = (ahora_ano + 1900) - ano;
+        if (ahora_mes < mes) {
+            edad--;
+        }
+        if ((mes == ahora_mes) && (ahora_dia < dia)) {
+            edad--;
+        }
+        if (edad > 1900) {
+            edad -= 1900;
+        }
+
+        // calculamos los meses
+        var meses = 0;
+
+        if (ahora_mes > mes && dia > ahora_dia)
+            meses = ahora_mes - mes - 1;
+        else if (ahora_mes > mes)
+            meses = ahora_mes - mes
+        if (ahora_mes < mes && dia < ahora_dia)
+            meses = 12 - (mes - ahora_mes);
+        else if (ahora_mes < mes)
+            meses = 12 - (mes - ahora_mes + 1);
+        if (ahora_mes == mes && dia > ahora_dia)
+            meses = 11;
+
+        // calculamos los dias
+        var dias = 0;
+        if (ahora_dia > dia)
+            dias = ahora_dia - dia;
+        if (ahora_dia < dia) {
+            var ultimoDiaMes = new Date(ahora_ano, ahora_mes - 1, 0);
+            dias = ultimoDiaMes.getDate() - (dia - ahora_dia);
+        }
+
+        if (edad == 1900) {
+            edad = 0;
+        }
+
+        return edad + " años, " + meses + " meses y " + dias + " días";
+    }
+
+    esNumero(strNumber) {
+        if (strNumber == null) return false;
+        if (strNumber == undefined) return false;
+        if (typeof strNumber === "number" && !isNaN(strNumber)) return true;
+        if (strNumber == "") return false;
+        if (strNumber === "") return false;
+        var psInt, psFloat;
+        psInt = parseInt(strNumber);
+        psFloat = parseFloat(strNumber);
+        return !isNaN(strNumber) && !isNaN(psFloat);
     }
 
 
